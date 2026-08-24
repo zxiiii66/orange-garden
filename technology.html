@@ -101,6 +101,9 @@
     .tech-image-full {
       width: 100%;
       overflow: hidden;
+    }
+
+    .tech-image-full.revealed {
       animation: imageZoomIn 1.2s ease-out forwards;
     }
 
@@ -109,6 +112,9 @@
       height: auto;
       display: block;
       transform: scale(1.1);
+    }
+
+    .tech-image-full.revealed img {
       animation: imageScale 1.5s ease-out forwards;
     }
 
@@ -209,10 +215,8 @@
     }
 
     .eco-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 60px;
-      align-items: center;
+      text-align: center;
+      margin-bottom: 40px;
     }
 
     .eco-content h2 {
@@ -261,15 +265,23 @@
     }
 
     .eco-image {
-      border-radius: 12px;
+      width: 100%;
       overflow: hidden;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    }
+
+    .eco-image.revealed {
+      animation: imageZoomIn 1.2s ease-out forwards;
     }
 
     .eco-image img {
       width: 100%;
-      aspect-ratio: 2268 / 1106;
-      object-fit: cover;
+      height: auto;
+      display: block;
+      transform: scale(1.1);
+    }
+
+    .eco-image.revealed img {
+      animation: imageScale 1.5s ease-out forwards;
     }
 
     /* Advantages */
@@ -449,43 +461,41 @@
   <section class="ecological-system">
     <div class="container">
       <div class="eco-grid">
-        <div class="eco-content">
-          <h2>生态循环系统</h2>
-          <p>
-            在爱橙姐姐的农场，每一个环节都相互关联，形成了完整的生态循环。这不仅保证了产品的品质，更实现了对环境的零负担。
-          </p>
+        <h2>生态循环系统</h2>
+        <p>
+          在爱橙姐姐的农场，每一个环节都相互关联，形成了完整的生态循环。这不仅保证了产品的品质，更实现了对环境的零负担。
+        </p>
 
-          <div class="eco-features">
-            <div class="eco-feature">
-              <div class="eco-feature-icon">🐔</div>
-              <span>鸡鸭除草除虫</span>
-            </div>
-            <div class="eco-feature">
-              <div class="eco-feature-icon">🪤</div>
-              <span>防虫板物理防治</span>
-            </div>
-            <div class="eco-feature">
-              <div class="eco-feature-icon">🍊</div>
-              <span>酵素发酵肥料</span>
-            </div>
-            <div class="eco-feature">
-              <div class="eco-feature-icon">💧</div>
-              <span>地下水滴灌系统</span>
-            </div>
-            <div class="eco-feature">
-              <div class="eco-feature-icon">🌿</div>
-              <span>零化学农药</span>
-            </div>
-            <div class="eco-feature">
-              <div class="eco-feature-icon">♻️</div>
-              <span>100%资源利用</span>
-            </div>
+        <div class="eco-features">
+          <div class="eco-feature">
+            <div class="eco-feature-icon">🐔</div>
+            <span>鸡鸭除草除虫</span>
+          </div>
+          <div class="eco-feature">
+            <div class="eco-feature-icon">🪤</div>
+            <span>防虫板物理防治</span>
+          </div>
+          <div class="eco-feature">
+            <div class="eco-feature-icon">🍊</div>
+            <span>酵素发酵肥料</span>
+          </div>
+          <div class="eco-feature">
+            <div class="eco-feature-icon">💧</div>
+            <span>地下水滴灌系统</span>
+          </div>
+          <div class="eco-feature">
+            <div class="eco-feature-icon">🌿</div>
+            <span>零化学农药</span>
+          </div>
+          <div class="eco-feature">
+            <div class="eco-feature-icon">♻️</div>
+            <span>100%资源利用</span>
           </div>
         </div>
-        <div class="eco-image">
-          <img src="img/farm/page_08.png" alt="生态农场">
-        </div>
       </div>
+    </div>
+    <div class="eco-image">
+      <img src="img/farm/page_08.png" alt="生态农场">
     </div>
   </section>
 
@@ -557,7 +567,7 @@
           <ul>
             <li>电话：15695927707</li>
             <li>微信：_Austin_1111</li>
-            <li>邮箱：1093359796@qq.com</li>
+            <li>邮箱：1481077311@qq.com</li>
           </ul>
         </div>
       </div>
