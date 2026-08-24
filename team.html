@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>实践队介绍 - 橙色满园</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    .team-hero {
+      min-height: 70vh;
+      background: linear-gradient(135deg, rgba(244, 132, 95, 0.1) 0%, rgba(42, 181, 160, 0.1) 100%);
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .team-hero-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+
+    .team-hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.25;
+    }
+
+    .team-hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 160px 40px 80px;
+      text-align: center;
+    }
+
+    .team-hero h1 {
+      font-family: var(--font-display);
+      font-size: 56px;
+      color: var(--text-dark);
+      margin-bottom: 20px;
+      letter-spacing: 6px;
+    }
+
+    .team-hero .tagline {
+      font-size: 18px;
+      color: var(--text-medium);
+      letter-spacing: 3px;
+      margin-bottom: 30px;
+    }
+
+    .team-hero .university {
+      font-size: 16px;
+      color: var(--orange);
+      font-weight: 500;
+    }
+
+    /* Team Overview */
+    .team-overview {
+      padding: 100px 0;
+    }
+
+    .overview-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .overview-content h2 {
+      font-family: var(--font-display);
+      font-size: 36px;
+      color: var(--text-dark);
+      margin-bottom: 24px;
+      letter-spacing: 2px;
+    }
+
+    .overview-content p {
+      font-size: 16px;
+      color: var(--text-medium);
+      line-height: 2;
+      margin-bottom: 20px;
+    }
+
+    .overview-content .highlight {
+      color: var(--orange);
+      font-weight: 500;
+    }
+
+    .overview-image {
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+    }
+
+    .overview-image img {
+      width: 100%;
+      aspect-ratio: 3 / 2;
+      object-fit: cover;
+    }
+
+    /* Research Methods */
+    .research-methods {
+      padding: 100px 0;
+      background: var(--bg-white);
+    }
+
+    .methods-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 40px;
+    }
+
+    .method-card {
+      padding: 40px;
+      background: var(--bg-cream);
+      border-radius: 12px;
+      border-left: 4px solid var(--orange);
+    }
+
+    .method-card h3 {
+      font-family: var(--font-heading);
+      font-size: 20px;
+      color: var(--text-dark);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .method-card h3 span {
+      width: 32px;
+      height: 32px;
+      background: var(--orange);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+    }
+
+    .method-card p {
+      font-size: 14px;
+      color: var(--text-medium);
+      line-height: 1.8;
+    }
+
+    /* Team Members */
+    .team-members {
+      padding: 100px 0;
+    }
+
+    .instructors-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+      margin-bottom: 60px;
+    }
+
+    .members-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .member-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+    }
+
+    .member-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .member-photo {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .instructor-card .member-photo {
+      height: auto;
+      aspect-ratio: 1 / 1;
+    }
+
+    .member-info {
+      padding: 20px;
+    }
+
+    .member-card h4 {
+      font-family: var(--font-heading);
+      font-size: 16px;
+      color: var(--text-dark);
+      margin-bottom: 6px;
+    }
+
+    .member-card .member-dept {
+      font-size: 12px;
+      color: var(--orange);
+      margin-bottom: 8px;
+    }
+
+    .member-card .member-desc {
+      font-size: 12px;
+      color: var(--text-medium);
+      line-height: 1.6;
+    }
+
+    .instructor-card .member-info {
+      padding: 24px;
+    }
+
+    .instructor-card h4 {
+      font-size: 18px;
+    }
+
+    /* Official Account */
+    .official-account {
+      padding: 80px 0;
+      background: var(--bg-white);
+    }
+
+    .account-card {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 60px;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 50px;
+      background: linear-gradient(135deg, rgba(244, 132, 95, 0.05) 0%, rgba(42, 181, 160, 0.05) 100%);
+      border-radius: 16px;
+      border: 1px solid var(--border-light);
+      transition: all 0.3s ease;
+    }
+
+    .account-card:hover {
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    }
+
+    .account-logo {
+      width: 120px;
+      height: 120px;
+      border-radius: 16px;
+      object-fit: cover;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .account-info {
+      text-align: left;
+    }
+
+    .account-info h3 {
+      font-family: var(--font-display);
+      font-size: 24px;
+      color: var(--text-dark);
+      margin-bottom: 12px;
+    }
+
+    .account-info p {
+      font-size: 14px;
+      color: var(--text-medium);
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    /* Achievements */
+    .team-achievements {
+      padding: 100px 0;
+      background: linear-gradient(135deg, var(--text-dark) 0%, #1a1a1a 100%);
+      color: white;
+    }
+
+    .achievements-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+    }
+
+    .achievement-card {
+      padding: 40px 30px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      text-align: center;
+    }
+
+    .achievement-icon {
+      width: 60px;
+      height: 60px;
+      margin: 0 auto 20px;
+      background: linear-gradient(135deg, var(--orange), var(--orange-dark));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+    }
+
+    .achievement-card h4 {
+      font-size: 18px;
+      margin-bottom: 12px;
+    }
+
+    .achievement-card p {
+      font-size: 14px;
+      opacity: 0.7;
+      line-height: 1.6;
+    }
+
+    /* Project Info */
+    .project-info {
+      padding: 100px 0;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+    }
+
+    .project-card {
+      padding: 40px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .project-card h3 {
+      font-family: var(--font-heading);
+      font-size: 22px;
+      color: var(--text-dark);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .project-card h3 .badge {
+      padding: 4px 12px;
+      background: var(--orange);
+      color: white;
+      font-size: 12px;
+      border-radius: 20px;
+    }
+
+    .project-card ul {
+      list-style: none;
+    }
+
+    .project-card li {
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border-light);
+      font-size: 14px;
+      color: var(--text-medium);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .project-card li:last-child {
+      border-bottom: none;
+    }
+
+    .project-card li::before {
+      content: '◆';
+      color: var(--orange);
+      font-size: 10px;
+    }
+
+    /* CTA */
+    .team-cta {
+      padding: 100px 0;
+      text-align: center;
+      background: var(--bg-light);
+    }
+
+    .team-cta h2 {
+      font-family: var(--font-display);
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+
+    .team-cta p {
+      font-size: 16px;
+      color: var(--text-medium);
+      margin-bottom: 40px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <span class="nav-logo-text">橙色满园</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">首页</a></li>
+        <li><a href="brand-story.html">品牌故事</a></li>
+        <li><a href="company.html">企业简介</a></li>
+        <li><a href="technology.html">核心技术</a></li>
+        <li><a href="products.html">产品展示</a></li>
+        <li><a href="honors.html">荣誉资质</a></li>
+        <li><a href="team.html" class="active">实践队</a></li>
+        <li><a href="timeline.html">实践历程</a></li>
+        <li><a href="more.html">更多</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="team-hero">
+    <div class="team-hero-bg">
+      <img src="img/LH1_8084.jpg" alt="实践队背景">
+    </div>
+    <div class="team-hero-content">
+      <h1>橙色满园实践队</h1>
+      <p class="tagline">探秘酵素脐橙，助力乡村振兴</p>
+      <p class="university">厦门大学 · 管理学院 & 经济学院</p>
+    </div>
+  </section>
+
+  <!-- Team Overview -->
+  <section class="team-overview">
+    <div class="container">
+      <div class="overview-grid">
+        <div class="overview-content">
+          <h2>关于实践队</h2>
+          <p>
+            "橙色满园"实践队由厦门大学管理学院和经济学院的学生组成，在两位专业指导老师的带领下，聚焦生态农业<span class="highlight">"有品质无品牌"</span>的典型困境。
+          </p>
+          <p>
+            团队依托厦门大学校长基金立项课题，以江西永新"爱橙姐姐的农场"为研究对象，运用管理学与经济学双重视角，探索高价值农产品品牌速建的方法论。
+          </p>
+          <p>
+            从2025年冬季首次调研到2026年暑期深度实践，团队已完成多次实地调研，与农场建立长期合作关系，产出多项研究成果。
+          </p>
+        </div>
+        <div class="overview-image">
+          <img src="img/LH1_8092.jpg" alt="团队调研">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Research Methods -->
+  <section class="research-methods">
+    <div class="container">
+      <div class="section-header visible">
+        <p class="en-title">RESEARCH METHODS</p>
+        <h2>研究方法</h2>
+        <div class="deco-line"></div>
+      </div>
+
+      <div class="methods-grid">
+        <div class="method-card">
+          <h3><span>1</span>凯勒CBBE模型</h3>
+          <p>引入管理学品牌资产模型，从品牌显著性、绩效与形象、评判与感觉、共鸣六个维度构建品牌力评估体系。</p>
+        </div>
+        <div class="method-card">
+          <h3><span>2</span>信号理论分析</h3>
+          <p>运用经济学信号理论，分析品牌叙事如何向消费者传递产品品质信号，影响购买决策。</p>
+        </div>
+        <div class="method-card">
+          <h3><span>3</span>A/B对照实验</h3>
+          <p>设计对照实验：A组展示基本信息与价格，B组额外展示品牌叙事文本，对比消费者支付意愿差异。</p>
+        </div>
+        <div class="method-card">
+          <h3><span>4</span>深度访谈</h3>
+          <p>对创始人刘江梅进行结构化深度访谈，获取品牌建设的一手资料和创业故事。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Members -->
+  <section class="team-members">
+    <div class="container">
+      <div class="section-header visible">
+        <p class="en-title">INSTRUCTORS</p>
+        <h2>指导老师</h2>
+        <div class="deco-line"></div>
+      </div>
+
+      <div class="instructors-grid">
+        <div class="member-card instructor-card">
+          <img src="img/实践队/640.png" alt="许莉" class="member-photo">
+          <div class="member-info">
+            <h4>许莉</h4>
+            <p class="member-dept">经济学院硕士生导师</p>
+            <p class="member-desc">中国注册资产评估师。深耕保险经济学、风险管理领域。擅长商业模式设计、财务合规审查以及风险管控等。</p>
+          </div>
+        </div>
+        <div class="member-card instructor-card">
+          <img src="img/实践队/640 (1).png" alt="徐雪源" class="member-photo">
+          <div class="member-info">
+            <h4>徐雪源</h4>
+            <p class="member-dept">经济学院辅导员</p>
+            <p class="member-desc">连续从事科创工作多年，指导多项大学生创新创业训练项目，多次指导科创竞赛团队获校、省、国家级奖项。擅长科创竞赛辅导、团队管理、乡村电商实战等工作。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-header visible">
+        <p class="en-title">TEAM MEMBERS</p>
+        <h2>团队成员</h2>
+        <div class="deco-line"></div>
+      </div>
+
+      <div class="members-grid">
+        <div class="member-card">
+          <img src="img/实践队/640 (2).png" alt="刘晗" class="member-photo">
+          <div class="member-info">
+            <h4>刘晗</h4>
+            <p class="member-dept">管理学院 · 2024级会计学</p>
+            <p class="member-desc">用沟通凝聚共识，在统筹协调中推动高效运转。负责项目整体设计与进度把控，协调实地调研，数据整合与成果产出。</p>
+          </div>
+        </div>
+        <div class="member-card">
+          <img src="img/实践队/640 (3).png" alt="张家琪" class="member-photo">
+          <div class="member-info">
+            <h4>张家琪</h4>
+            <p class="member-dept">管理学院 · 2024级审计学</p>
+            <p class="member-desc">关注品牌表达与消费者感知，从细节中提炼信息。负责访谈内容整理与案例归纳，重点分析消费者对"酵素脐橙"品牌叙事的接受情况。</p>
+          </div>
+        </div>
+        <div class="member-card">
+          <img src="img/实践队/640 (4).png" alt="谢睿浠" class="member-photo">
+          <div class="member-info">
+            <h4>谢睿浠</h4>
+            <p class="member-dept">管理学院 · 2024级电子商务</p>
+            <p class="member-desc">立足电商视角观察乡土品牌，关注线上传播、平台运营与消费触达。负责电商运营板块调研，分析农场产品在线上平台的展示方式与销售路径。</p>
+          </div>
+        </div>
+        <div class="member-card">
+          <img src="img/实践队/640 (5).png" alt="彭若琳" class="member-photo">
+          <div class="member-info">
+            <h4>彭若琳</h4>
+            <p class="member-dept">管理学院 · 2023级会计学</p>
+            <p class="member-desc">以会计法学复合视角关注乡土品牌发展，在实践中注重细节协同与服务保障。负责队务协助与重点遴选对接，保障实践活动顺利开展。</p>
+          </div>
+        </div>
+        <div class="member-card">
+          <img src="img/实践队/640 (6).png" alt="吴乐菲" class="member-photo">
+          <div class="member-info">
+            <h4>吴乐菲</h4>
+            <p class="member-dept">经济学院 · 2023级财政学</p>
+            <p class="member-desc">用脚步丈量田野，用观察记录实践，在一线走访中捕捉真实信息。负责实地走访与问卷发放，收集农场经营、产品销售和消费反馈等一手资料。</p>
+          </div>
+        </div>
+        <div class="member-card">
+          <img src="img/实践队/640 (7).png" alt="刘志鹏" class="member-photo">
+          <div class="member-info">
+            <h4>刘志鹏</h4>
+            <p class="member-dept">管理学院 · 2023级会计学</p>
+            <p class="member-desc">注重信息梳理与过程记录，为团队研究提供扎实支撑。负责会议记录、资料汇总和数据台账整理，保障调研信息完整留存。</p>
+          </div>
+        </div>
+        <div class="member-card">
+          <img src="img/实践队/640 (8).png" alt="周轩涛" class="member-photo">
+          <div class="member-info">
+            <h4>周轩涛</h4>
+            <p class="member-dept">管理学院 · 2025级财务管理</p>
+            <p class="member-desc">用文字呈现实践成果，在梳理中提炼重点，在表达中传递价值。负责推文撰写与宣传文案，展示团队调研过程和阶段性成果。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Official Account -->
+  <section class="official-account">
+    <div class="container">
+      <div class="account-card">
+        <img src="img/微信图片_2026-08-24_103931_865.jpg" alt="橙色满园公众号" class="account-logo">
+        <div class="account-info">
+          <h3>关注我们</h3>
+          <p>关注「橙色满园」官方公众号，获取最新实践动态、调研成果和品牌故事。</p>
+          <a href="https://mp.weixin.qq.com/s/q4ukv2VFF0ylFWp_KJP-9A" target="_blank" class="btn btn-primary">前往关注 →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Achievements -->
+  <section class="team-achievements">
+    <div class="container">
+      <div class="section-header visible">
+        <p class="en-title" style="color: rgba(255,255,255,0.5);">ACHIEVEMENTS</p>
+        <h2 style="color: white;">团队荣誉</h2>
+        <div class="deco-line"></div>
+      </div>
+
+      <div class="achievements-grid">
+        <div class="achievement-card">
+          <div class="achievement-icon">🏆</div>
+          <h4>三创赛最高分</h4>
+          <p>获得厦门大学三创赛校级最高分</p>
+        </div>
+        <div class="achievement-card">
+          <div class="achievement-icon">🥇</div>
+          <h4>最佳创业奖</h4>
+          <p>三创赛最佳创业奖获得者</p>
+        </div>
+        <div class="achievement-card">
+          <div class="achievement-icon">📜</div>
+          <h4>校长基金立项</h4>
+          <p>厦门大学校长基金本科生项目</p>
+        </div>
+        <div class="achievement-card">
+          <div class="achievement-icon">🔬</div>
+          <h4>国家级大创</h4>
+          <p>两项国家级大学生创新创业训练计划</p>
+        </div>
+        <div class="achievement-card">
+          <div class="achievement-icon">🏅</div>
+          <h4>优秀实践团队</h4>
+          <p>校级优秀社会实践团队</p>
+        </div>
+        <div class="achievement-card">
+          <div class="achievement-icon">📰</div>
+          <h4>媒体关注</h4>
+          <p>多次获得校内外媒体报道</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Project Info -->
+  <section class="project-info">
+    <div class="container">
+      <div class="section-header visible">
+        <p class="en-title">PROJECT INFO</p>
+        <h2>项目信息</h2>
+        <div class="deco-line"></div>
+      </div>
+
+      <div class="project-grid">
+        <div class="project-card">
+          <h3>研究课题 <span class="badge">国家级</span></h3>
+          <ul>
+            <li>项目名称：橙色满园——基于生态农业的酵素脐橙全产业链循环增值模式创新与效益评估</li>
+            <li>项目类型：校长基金 + 国家级大学生创新创业训练计划</li>
+            <li>负责学院：经济学院</li>
+            <li>指导老师：许莉、徐雪源</li>
+            <li>团队成员：5人</li>
+          </ul>
+        </div>
+        <div class="project-card">
+          <h3>实践成果</h3>
+          <ul>
+            <li>完成300+份消费者问卷调研</li>
+            <li>开展A/B对照实验验证品牌叙事效果</li>
+            <li>产出品牌叙事升级方案</li>
+            <li>撰写政策建议书</li>
+            <li>制作实践宣传片</li>
+            <li>与博鑫农业建立长期合作关系</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="team-cta">
+    <div class="container">
+      <h2>了解实践历程</h2>
+      <p>回顾橙色满园实践队从启动到成果的完整旅程</p>
+      <div class="cta-animated">
+        <a href="timeline.html" class="btn btn-primary">查看实践历程</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <h3>橙色满园</h3>
+          <p>Beauty Orange Paradise - 爱橙姐姐的农场<br>致力于打造全国绿色酵素农业标杆企业</p>
+        </div>
+        <div class="footer-links">
+          <h4>快速导航</h4>
+          <ul>
+            <li><a href="brand-story.html">品牌故事</a></li>
+            <li><a href="products.html">产品展示</a></li>
+            <li><a href="technology.html">核心技术</a></li>
+            <li><a href="honors.html">荣誉资质</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>联系我们</h4>
+          <ul>
+            <li>电话：18970619188</li>
+            <li>微信：ljm990818</li>
+            <li>邮箱：26151817@qq.com</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 江西博鑫农业有限公司 版权所有 | 橙色满园实践队</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

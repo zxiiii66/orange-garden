@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>企业简介 - 橙色满园</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    .company-hero {
+      min-height: 60vh;
+      background: linear-gradient(135deg, rgba(244, 132, 95, 0.1) 0%, rgba(42, 181, 160, 0.1) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: var(--text-dark);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .company-hero-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+
+    .company-hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.3;
+    }
+
+    .company-hero h1 {
+      font-family: var(--font-display);
+      font-size: 56px;
+      margin-bottom: 20px;
+      letter-spacing: 6px;
+    }
+
+    .company-hero p {
+      font-size: 18px;
+      opacity: 0.9;
+    }
+
+    .company-intro {
+      padding: 100px 0;
+    }
+
+    .company-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .company-content h2 {
+      font-family: var(--font-display);
+      font-size: 36px;
+      color: var(--text-dark);
+      margin-bottom: 24px;
+      letter-spacing: 2px;
+    }
+
+    .company-content p {
+      font-size: 16px;
+      color: var(--text-medium);
+      line-height: 2;
+      margin-bottom: 20px;
+    }
+
+    .company-image {
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+    }
+
+    .company-image img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+    }
+
+    /* Company Stats */
+    .company-stats {
+      padding: 80px 0;
+      background: var(--bg-white);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+      text-align: center;
+    }
+
+    .stat-card {
+      padding: 40px 20px;
+      background: var(--bg-cream);
+      border-radius: 12px;
+      transition: all 0.3s ease;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    .stat-icon {
+      width: 60px;
+      height: 60px;
+      margin: 0 auto 20px;
+      background: linear-gradient(135deg, var(--orange), var(--orange-dark));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+    }
+
+    .stat-number {
+      font-family: var(--font-heading);
+      font-size: 36px;
+      color: var(--orange);
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      font-size: 14px;
+      color: var(--text-light);
+    }
+
+    /* Business Scope */
+    .business-scope {
+      padding: 100px 0;
+      background: var(--bg-light);
+    }
+
+    .scope-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+
+    .scope-card {
+      background: white;
+      padding: 40px 30px;
+      border-radius: 12px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .scope-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    .scope-icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 20px;
+      background: var(--bg-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+    }
+
+    .scope-card h3 {
+      font-family: var(--font-heading);
+      font-size: 20px;
+      color: var(--text-dark);
+      margin-bottom: 12px;
+    }
+
+    .scope-card p {
+      font-size: 14px;
+      color: var(--text-medium);
+      line-height: 1.8;
+    }
+
+    /* Facilities */
+    .facilities {
+      padding: 100px 0;
+    }
+
+    .facilities-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 40px;
+    }
+
+    .facility-item {
+      display: flex;
+      gap: 20px;
+      padding: 30px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .facility-icon {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, var(--green), var(--green-dark));
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      flex-shrink: 0;
+    }
+
+    .facility-content h4 {
+      font-family: var(--font-heading);
+      font-size: 18px;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+    }
+
+    .facility-content p {
+      font-size: 14px;
+      color: var(--text-medium);
+      line-height: 1.6;
+    }
+
+    /* Vision Mission */
+    .vision-mission {
+      padding: 100px 0;
+      background: linear-gradient(135deg, var(--text-dark) 0%, #1a1a1a 100%);
+      color: white;
+    }
+
+    .vm-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+    }
+
+    .vm-card {
+      padding: 40px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      text-align: center;
+    }
+
+    .vm-card h3 {
+      font-family: var(--font-display);
+      font-size: 24px;
+      color: var(--orange);
+      margin-bottom: 20px;
+    }
+
+    .vm-card p {
+      font-size: 14px;
+      line-height: 1.8;
+      opacity: 0.8;
+    }
+
+    /* Contact */
+    .contact-section {
+      padding: 100px 0;
+      background: var(--bg-light);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+    }
+
+    .contact-info h2 {
+      font-family: var(--font-display);
+      font-size: 36px;
+      color: var(--text-dark);
+      margin-bottom: 30px;
+    }
+
+    .contact-item {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .contact-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--orange);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .contact-text h4 {
+      font-size: 14px;
+      color: var(--text-light);
+      margin-bottom: 4px;
+    }
+
+    .contact-text p {
+      font-size: 16px;
+      color: var(--text-dark);
+    }
+
+    .contact-map {
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+      background: var(--bg-white);
+      padding: 20px;
+    }
+
+    .contact-map img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <span class="nav-logo-text">橙色满园</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">首页</a></li>
+        <li><a href="brand-story.html">品牌故事</a></li>
+        <li><a href="company.html" class="active">企业简介</a></li>
+        <li><a href="technology.html">核心技术</a></li>
+        <li><a href="products.html">产品展示</a></li>
+        <li><a href="honors.html">荣誉资质</a></li>
+        <li><a href="team.html">实践队</a></li>
+        <li><a href="timeline.html">实践历程</a></li>
+        <li><a href="more.html">更多</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="company-hero">
+    <div class="company-hero-bg">
+      <img src="img/企业2.png" alt="企业背景">
+    </div>
+    <div>
+      <h1>企业简介</h1>
+      <p>江西博鑫农业有限公司 · 国家高新技术企业</p>
+    </div>
+  </section>
+
+  <!-- Company Intro -->
+  <section class="company-intro">
+    <div class="container">
+      <div class="company-grid">
+        <div class="company-content">
+          <h2>关于博鑫农业</h2>
+          <p>
+            江西博鑫农业有限公司成立于2015年，位于江西省永新县高桥楼镇，是一家集种植、加工、研发、销售于一体的现代化农业企业。
+          </p>
+          <p>
+            公司专注于有机井冈蜜橙的种植与深加工，独创酵素微生物复合菌营养液发酵技术，开创了绿色酵素橙种植的先河。
+          </p>
+          <p>
+            经过多年发展，公司已成为市级农业产业化重点龙头企业，致力于打造全国绿色酵素农业标杆企业，为乡村振兴战略贡献力量。
+          </p>
+        </div>
+        <div class="company-image">
+          <img src="img/农场.png" alt="农场全景">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="company-stats">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon">🏞️</div>
+          <div class="stat-number" data-target="1200">0</div>
+          <div class="stat-label">亩标准化果园</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">🏭</div>
+          <div class="stat-number" data-target="1500">0</div>
+          <div class="stat-label">平方米深加工基地</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">🔬</div>
+          <div class="stat-number" data-target="1000">0</div>
+          <div class="stat-label">平方米科研大楼</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">👨‍🔬</div>
+          <div class="stat-number" data-target="5">0</div>
+          <div class="stat-label">名高级技术人员</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Business Scope -->
+  <section class="business-scope">
+    <div class="container">
+      <div class="section-header visible">
+        <p class="en-title">BUSINESS SCOPE</p>
+        <h2>主营业务</h2>
+        <div class="deco-line"></div>
+      </div>
+
+      <div class="scope-grid">
+        <div class="scope-card">
+          <div class="scope-icon">🍊</div>
+          <h3>有机种植</h3>
+          <p>1200亩标准化果园，种植有机井冈蜜橙，采用酵素生态种植技术</p>
+        </div>
+        <div class="scope-card">
+          <div class="scope-icon">🧪</div>
+          <h3>深加工</h3>
+          <p>1500平方米深加工基地，开发橙果酒、饮料、茶饮、零食等七大产品系列</p>
+        </div>
+        <div class="scope-card">
+          <div class="scope-icon">🔬</div>
+          <h3>科研研发</h3>
+          <p>1000多平方米科研大楼，持续研发酵素微生物复合菌技术</p>
+        </div>
+        <div class="scope-card">
+          <div class="scope-icon">🛒</div>
+          <h3>市场销售</h3>
+          <p>线上线下全渠道销售，产品进入粤港澳大湾区及深圳市场</p>
+        </div>
+        <div class="scope-card">
+          <div class="scope-icon">🌱</div>
+          <h3>生态循环</h3>
+          <p>实现100%橙皮利用，打造完整的农业生态循环系统</p>
+        </div>
+        <div class="scope-card">
+          <div class="scope-icon">📚</div>
+          <h3>研学教育</h3>
+          <p>"江梦源"研学基地，开展生态农业教育与体验活动</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Facilities -->
+  <section class="facilities">
+    <div class="container">
+      <div class="section-header visible">
+        <p class="en-title">FACILITIES</p>
+        <h2>硬件设施</h2>
+        <div class="deco-line"></div>
+      </div>
+
+      <div class="facilities-grid">
+        <div class="facility-item">
+          <div class="facility-icon">🏗️</div>
+          <div class="facility-content">
+            <h4>标准化果园</h4>
+            <p>1200亩梯田式果园，配备完善的灌溉系统和防护林体系</p>
+          </div>
+        </div>
+        <div class="facility-item">
+          <div class="facility-icon">🏭</div>
+          <div class="facility-content">
+            <h4>深加工基地</h4>
+            <p>1500平方米现代化加工车间，具备完整的生产线</p>
+          </div>
+        </div>
+        <div class="facility-item">
+          <div class="facility-icon">🔬</div>
+          <div class="facility-content">
+            <h4>科研大楼</h4>
+            <p>1000多平方米科研空间，配备专业实验室和检测设备</p>
+          </div>
+        </div>
+        <div class="facility-item">
+          <div class="facility-icon">💧</div>
+          <div class="facility-content">
+            <h4>灌溉系统</h4>
+            <p>地下水滴灌系统，山顶蓄水池，确保果树水分供应</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Vision Mission -->
+  <section class="vision-mission">
+    <div class="container">
+      <div class="section-header visible">
+        <p class="en-title" style="color: rgba(255,255,255,0.5);">VISION & MISSION</p>
+        <h2 style="color: white;">使命 · 愿景 · 价值观</h2>
+        <div class="deco-line"></div>
+      </div>
+
+      <div class="vm-grid">
+        <div class="vm-card">
+          <h3>使命</h3>
+          <p>致力于为消费者提供安全、健康、美味的有机农产品，推动生态农业可持续发展</p>
+        </div>
+        <div class="vm-card">
+          <h3>愿景</h3>
+          <p>打造全国绿色酵素农业标杆企业，让每一位消费者都能享受到高品质的生态食品</p>
+        </div>
+        <div class="vm-card">
+          <h3>价值观</h3>
+          <p>生态优先、品质为本、创新驱动、合作共赢</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="contact-section">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info">
+          <h2>联系我们</h2>
+
+          <div class="contact-item">
+            <div class="contact-icon">📍</div>
+            <div class="contact-text">
+              <h4>地址</h4>
+              <p>江西省吉安市永新县高桥楼镇</p>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">📞</div>
+            <div class="contact-text">
+              <h4>电话</h4>
+              <p>18970619188</p>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">💬</div>
+            <div class="contact-text">
+              <h4>微信</h4>
+              <p>ljm990818</p>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">📧</div>
+            <div class="contact-text">
+              <h4>邮箱</h4>
+              <p>26151817@qq.com</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-map">
+          <img src="img/企业2.png" alt="农场位置">
+          <p style="text-align: center; margin-top: 16px; color: var(--text-light); font-size: 14px;">
+            江西省吉安市永新县高桥楼镇
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <h3>橙色满园</h3>
+          <p>Beauty Orange Paradise - 爱橙姐姐的农场<br>致力于打造全国绿色酵素农业标杆企业</p>
+        </div>
+        <div class="footer-links">
+          <h4>快速导航</h4>
+          <ul>
+            <li><a href="brand-story.html">品牌故事</a></li>
+            <li><a href="products.html">产品展示</a></li>
+            <li><a href="technology.html">核心技术</a></li>
+            <li><a href="honors.html">荣誉资质</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>联系我们</h4>
+          <ul>
+            <li>电话：18970619188</li>
+            <li>微信：ljm990818</li>
+            <li>邮箱：26151817@qq.com</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 江西博鑫农业有限公司 版权所有 | 橙色满园实践队</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

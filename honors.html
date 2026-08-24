@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>荣誉资质 - 橙色满园</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    .honors-hero {
+      min-height: 60vh;
+      background: linear-gradient(135deg, rgba(244, 132, 95, 0.1) 0%, rgba(42, 181, 160, 0.1) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: var(--text-dark);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .honors-hero-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+
+    .honors-hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.25;
+    }
+
+    .honors-hero h1 {
+      font-family: var(--font-display);
+      font-size: 56px;
+      margin-bottom: 20px;
+      letter-spacing: 6px;
+    }
+
+    .honors-hero p {
+      font-size: 18px;
+      opacity: 0.9;
+    }
+
+    .honors-section {
+      padding: 100px 0;
+    }
+
+    .honors-section:nth-child(even) {
+      background: var(--bg-white);
+    }
+
+    .honors-section h2 {
+      font-family: var(--font-display);
+      font-size: 32px;
+      color: var(--text-dark);
+      margin-bottom: 40px;
+      text-align: center;
+      letter-spacing: 2px;
+    }
+
+    .honors-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+    }
+
+    .honor-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+    }
+
+    .honor-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .honor-image {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      object-position: top;
+      background: var(--bg-light);
+    }
+
+    .honor-content {
+      padding: 20px;
+    }
+
+    .honor-content h4 {
+      font-family: var(--font-heading);
+      font-size: 16px;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+    }
+
+    .honor-content p {
+      font-size: 12px;
+      color: var(--text-light);
+    }
+
+    .honor-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      background: var(--orange);
+      color: white;
+      font-size: 11px;
+      border-radius: 20px;
+      margin-top: 10px;
+    }
+
+    /* Honors List */
+    .honors-list {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .honor-list-item {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 20px 24px;
+      background: var(--bg-cream);
+      border-radius: 8px;
+      margin-bottom: 12px;
+      transition: all 0.3s ease;
+    }
+
+    .honor-list-item:hover {
+      transform: translateX(5px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    }
+
+    .honor-list-icon {
+      width: 48px;
+      height: 48px;
+      background: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      flex-shrink: 0;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    }
+
+    .honor-list-content {
+      flex: 1;
+    }
+
+    .honor-list-content h4 {
+      font-family: var(--font-heading);
+      font-size: 16px;
+      color: var(--text-dark);
+      margin-bottom: 4px;
+    }
+
+    .honor-list-content p {
+      font-size: 13px;
+      color: var(--text-light);
+    }
+
+    .honor-list-item .honor-badge {
+      margin-top: 0;
+      flex-shrink: 0;
+    }
+
+    /* Certificate Section */
+    .certificate-section {
+      padding: 100px 0;
+      background: var(--bg-light);
+    }
+
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+    }
+
+    .cert-item {
+      background: white;
+      border-radius: 12px;
+      padding: 40px 30px;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .cert-icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 20px;
+      background: linear-gradient(135deg, var(--orange), var(--orange-dark));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+    }
+
+    .cert-item h3 {
+      font-family: var(--font-heading);
+      font-size: 18px;
+      color: var(--text-dark);
+      margin-bottom: 12px;
+    }
+
+    .cert-item p {
+      font-size: 13px;
+      color: var(--text-medium);
+      line-height: 1.7;
+    }
+
+    /* Stats Banner */
+    .stats-banner {
+      padding: 80px 0;
+      background: linear-gradient(135deg, var(--text-dark) 0%, #1a1a1a 100%);
+      color: white;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+      text-align: center;
+    }
+
+    .stat-item h3 {
+      font-family: var(--font-heading);
+      font-size: 48px;
+      color: var(--orange);
+      margin-bottom: 8px;
+    }
+
+    .stat-item p {
+      font-size: 14px;
+      opacity: 0.7;
+    }
+
+    /* Media Coverage - Magazine Style */
+    .media-coverage {
+      padding: 100px 0;
+    }
+
+    .media-magazine {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .media-feature {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+      transition: all 0.4s ease;
+    }
+
+    .media-feature:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+    }
+
+    .media-feature-visual {
+      overflow: hidden;
+      min-height: 280px;
+    }
+
+    .media-feature-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .media-feature:hover .media-feature-visual img {
+      transform: scale(1.05);
+    }
+
+    .media-feature-content {
+      padding: 50px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .media-feature-content .media-source {
+      font-size: 13px;
+      color: var(--orange);
+      font-weight: 500;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .media-feature-content h3 {
+      font-family: var(--font-heading);
+      font-size: 24px;
+      color: var(--text-dark);
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+
+    .media-feature-content p {
+      font-size: 15px;
+      color: var(--text-medium);
+      line-height: 1.8;
+      margin-bottom: 24px;
+    }
+
+    .media-feature-content .btn {
+      align-self: flex-start;
+    }
+
+    .media-small {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .media-small:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .media-small-cover {
+      height: 160px;
+      overflow: hidden;
+    }
+
+    .media-small-cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .media-small:hover .media-small-cover img {
+      transform: scale(1.05);
+    }
+
+    .media-small-content {
+      padding: 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .media-small-content .source {
+      font-size: 12px;
+      color: var(--text-light);
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    .media-small-content h4 {
+      font-family: var(--font-heading);
+      font-size: 16px;
+      color: var(--text-dark);
+      line-height: 1.5;
+      margin-bottom: 16px;
+      flex: 1;
+    }
+
+    .media-small-content a {
+      font-size: 13px;
+      color: var(--orange);
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: gap 0.3s ease;
+    }
+
+    .media-small-content a:hover {
+      gap: 10px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <span class="nav-logo-text">橙色满园</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">首页</a></li>
+        <li><a href="brand-story.html">品牌故事</a></li>
+        <li><a href="company.html">企业简介</a></li>
+        <li><a href="technology.html">核心技术</a></li>
+        <li><a href="products.html">产品展示</a></li>
+        <li><a href="honors.html" class="active">荣誉资质</a></li>
+        <li><a href="team.html">实践队</a></li>
+        <li><a href="timeline.html">实践历程</a></li>
+        <li><a href="more.html">更多</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="honors-hero">
+    <div class="honors-hero-bg">
+      <img src="img/farm/page_03.png" alt="荣誉背景">
+    </div>
+    <div>
+      <h1>荣誉资质</h1>
+      <p>品质认证 · 权威认可 · 媒体关注</p>
+    </div>
+  </section>
+
+  <!-- Enterprise Honors with Images -->
+  <section class="honors-section">
+    <div class="container">
+      <h2>资质认证</h2>
+      <div class="honors-grid">
+        <div class="honor-card">
+          <img src="img/honors/honor_5.png" alt="高新技术企业" class="honor-image">
+          <div class="honor-content">
+            <h4>国家高新技术企业</h4>
+            <p>江西省科学技术厅认证</p>
+            <span class="honor-badge">国家级</span>
+          </div>
+        </div>
+        <div class="honor-card">
+          <img src="img/honors/honor_2.png" alt="有机认证" class="honor-image">
+          <div class="honor-content">
+            <h4>有机认证</h4>
+            <p>连续多年保持认证</p>
+            <span class="honor-badge">有机</span>
+          </div>
+        </div>
+        <div class="honor-card">
+          <img src="img/honors/honor_3.png" alt="圳品认证" class="honor-image">
+          <div class="honor-content">
+            <h4>深圳"圳品"认证</h4>
+            <p>深圳标准认证产品</p>
+            <span class="honor-badge">市级</span>
+          </div>
+        </div>
+        <div class="honor-card">
+          <img src="img/honors/honor_4.png" alt="菜篮子基地" class="honor-image">
+          <div class="honor-content">
+            <h4>粤港澳大湾区"菜篮子"基地</h4>
+            <p>供港澳农产品基地</p>
+            <span class="honor-badge">国家级</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Enterprise Honors List -->
+  <section class="honors-section" style="background: var(--bg-white);">
+    <div class="container">
+      <h2>企业荣誉</h2>
+      <div class="honors-list">
+        <div class="honor-list-item">
+          <div class="honor-list-icon">🏆</div>
+          <div class="honor-list-content">
+            <h4>省级生态农场</h4>
+            <p>江西省农业农村厅认定</p>
+          </div>
+          <span class="honor-badge">省级</span>
+        </div>
+        <div class="honor-list-item">
+          <div class="honor-list-icon">🌐</div>
+          <div class="honor-list-content">
+            <h4>省级智慧农场</h4>
+            <p>数字化农业示范</p>
+          </div>
+          <span class="honor-badge">省级</span>
+        </div>
+        <div class="honor-list-item">
+          <div class="honor-list-icon">📡</div>
+          <div class="honor-list-content">
+            <h4>省级物联网示范基地</h4>
+            <p>农业物联网应用示范</p>
+          </div>
+          <span class="honor-badge">省级</span>
+        </div>
+        <div class="honor-list-item">
+          <div class="honor-list-icon">🏅</div>
+          <div class="honor-list-content">
+            <h4>井冈山品牌示范基地</h4>
+            <p>区域公用品牌标准化</p>
+          </div>
+          <span class="honor-badge">省级</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Banner -->
+  <section class="stats-banner">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <h3 data-target="10">0</h3>
+          <p>年有机认证</p>
+        </div>
+        <div class="stat-item">
+          <h3 data-target="8">0</h3>
+          <p>项企业资质</p>
+        </div>
+        <div class="stat-item">
+          <h3 data-target="5">0</h3>
+          <p>次金银奖</p>
+        </div>
+        <div class="stat-item">
+          <h3 data-target="20">0</h3>
+          <p>媒体报道</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certificates -->
+  <section class="certificate-section">
+    <div class="container">
+      <h2 style="text-align: center; font-family: var(--font-display); font-size: 32px; margin-bottom: 40px;">认证体系</h2>
+      <div class="cert-grid">
+        <div class="cert-item">
+          <div class="cert-icon">🌿</div>
+          <h3>有机产品认证</h3>
+          <p>产品通过国家有机认证，确保从种植到加工全程符合有机标准</p>
+        </div>
+        <div class="cert-item">
+          <div class="cert-icon">🔬</div>
+          <h3>质量检测</h3>
+          <p>定期送检权威机构，营养成分数据公开透明</p>
+        </div>
+        <div class="cert-item">
+          <div class="cert-icon">📋</div>
+          <h3>生产许可</h3>
+          <p>具备完整的食品生产许可证和相关资质</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Media Coverage -->
+  <section class="media-coverage">
+    <div class="container">
+      <div class="section-header visible">
+        <p class="en-title">MEDIA COVERAGE</p>
+        <h2>媒体报道</h2>
+        <div class="deco-line"></div>
+      </div>
+
+      <div class="media-magazine">
+        <!-- Feature Article -->
+        <div class="media-feature">
+          <div class="media-feature-visual">
+            <img src="img/media/3210599826051080.jpg" alt="永新县政府报道">
+          </div>
+          <div class="media-feature-content">
+            <span class="media-source">永新县政府网站</span>
+            <h3>橙香满园聚青力 科创赋能兴产业——永新脐橙产业奏响乡村振兴新乐章</h3>
+            <p>从生态种植到品牌建设，从科技创新到乡村振兴，永新脐橙产业正在书写新的篇章。</p>
+            <a href="https://yxrmtzx.yongxin.gov.cn/webDetails/news?id=14302072&tenantId=225&uid=675791872e65930019c206f7" target="_blank" class="btn btn-outline">阅读全文 →</a>
+          </div>
+        </div>
+
+        <!-- Small Articles -->
+        <div class="media-small">
+          <div class="media-small-cover">
+            <img src="img/media/ScreenShot_2026-08-21_163037_134.png" alt="绿促会公众号">
+          </div>
+          <div class="media-small-content">
+            <span class="source">绿促会公众号</span>
+            <h4>产学相融 笃行致远丨"橙色满园"厦大实践队访井冈脐橙酵素</h4>
+            <a href="https://mp.weixin.qq.com/s/3WvkMV4kDiPvwKSZgE1cOQ" target="_blank">阅读全文 →</a>
+          </div>
+        </div>
+
+        <div class="media-small">
+          <div class="media-small-cover">
+            <img src="img/media/ScreenShot_2026-08-21_163137_947.png" alt="厦大管院公众号">
+          </div>
+          <div class="media-small-content">
+            <span class="source">厦大管院公众号</span>
+            <h4>橙园深处践知行，青春作答助振兴——管院学子续写助农新篇</h4>
+            <a href="https://mp.weixin.qq.com/s/luypl815tx4f8x0h9BK_KA" target="_blank">阅读全文 →</a>
+          </div>
+        </div>
+
+        <div class="media-small">
+          <div class="media-small-cover">
+            <img src="img/media/ScreenShot_2026-08-21_163153_014.png" alt="爱橙姐姐品牌故事">
+          </div>
+          <div class="media-small-content">
+            <span class="source">爱橙姐姐品牌故事</span>
+            <h4>像养育孩子一样养育一片会呼吸的橙林</h4>
+            <a href="https://mp.weixin.qq.com/s/cw35RAm0Sk5IIQLi9Mud3w" target="_blank">阅读全文 →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <h3>橙色满园</h3>
+          <p>Beauty Orange Paradise - 爱橙姐姐的农场<br>致力于打造全国绿色酵素农业标杆企业</p>
+        </div>
+        <div class="footer-links">
+          <h4>快速导航</h4>
+          <ul>
+            <li><a href="brand-story.html">品牌故事</a></li>
+            <li><a href="products.html">产品展示</a></li>
+            <li><a href="technology.html">核心技术</a></li>
+            <li><a href="honors.html">荣誉资质</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>联系我们</h4>
+          <ul>
+            <li>电话：18970619188</li>
+            <li>微信：ljm990818</li>
+            <li>邮箱：26151817@qq.com</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 江西博鑫农业有限公司 版权所有 | 橙色满园实践队</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

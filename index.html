@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>橙色满园 - Beauty Orange Paradise</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, #FBF8F3 0%, #F5F2ED 100%);
+    }
+
+    .hero-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 0;
+    }
+
+    .hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.15;
+    }
+
+    /* Decorative ink circles */
+    .ink-circle {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid var(--orange);
+      opacity: 0.2;
+    }
+
+    .ink-circle-1 {
+      width: 400px;
+      height: 400px;
+      top: -100px;
+      right: -100px;
+    }
+
+    .ink-circle-2 {
+      width: 300px;
+      height: 300px;
+      bottom: -50px;
+      left: -50px;
+      border-color: var(--green);
+    }
+
+    .ink-circle-3 {
+      width: 200px;
+      height: 200px;
+      top: 50%;
+      left: 10%;
+      border-color: var(--orange);
+      opacity: 0.1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 0 40px;
+    }
+
+    .hero-brand {
+      font-size: 14px;
+      color: var(--text-light);
+      letter-spacing: 8px;
+      text-transform: uppercase;
+      margin-bottom: 30px;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: 72px;
+      color: var(--text-dark);
+      margin-bottom: 20px;
+      letter-spacing: 8px;
+      line-height: 1.2;
+    }
+
+    .hero-title span {
+      color: var(--orange);
+    }
+
+    .hero-slogan {
+      font-family: var(--font-heading);
+      font-size: 24px;
+      color: var(--text-medium);
+      margin-bottom: 16px;
+      letter-spacing: 4px;
+    }
+
+    .hero-en {
+      font-size: 16px;
+      color: var(--text-light);
+      letter-spacing: 6px;
+      margin-bottom: 50px;
+    }
+
+    .hero-deco {
+      width: 80px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--orange), var(--green));
+      margin: 0 auto 50px;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      animation: bounce 2s infinite;
+    }
+
+    .hero-scroll span {
+      display: block;
+      font-size: 12px;
+      color: var(--text-light);
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+    }
+
+    .hero-scroll::after {
+      content: '↓';
+      display: block;
+      font-size: 20px;
+      color: var(--orange);
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+      40% { transform: translateX(-50%) translateY(-10px); }
+      60% { transform: translateX(-50%) translateY(-5px); }
+    }
+
+    /* Stats Section */
+    .stats-section {
+      padding: 80px 0;
+      background: var(--bg-white);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+      text-align: center;
+    }
+
+    .stat-item {
+      padding: 30px;
+    }
+
+    .stat-number {
+      font-family: var(--font-heading);
+      font-size: 48px;
+      color: var(--orange);
+      margin-bottom: 8px;
+    }
+
+    .stat-unit {
+      font-size: 18px;
+      color: var(--text-medium);
+    }
+
+    .stat-label {
+      font-size: 14px;
+      color: var(--text-light);
+      margin-top: 8px;
+    }
+
+    /* Quick Links Section */
+    .quick-links {
+      padding: 30px 0 40px;
+    }
+
+    .quick-links-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      align-items: center;
+    }
+
+    .quick-link-card {
+      position: relative;
+      height: 280px;
+      border-radius: 8px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.4s ease;
+    }
+
+    .quick-link-square {
+      aspect-ratio: 1 / 1;
+      height: auto;
+    }
+
+    .quick-link-square img {
+      height: 100%;
+    }
+
+    .quick-link-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .quick-link-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .quick-link-card:hover img {
+      transform: scale(1.1);
+    }
+
+    .quick-link-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 30px;
+      background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+      color: white;
+    }
+
+    .quick-link-overlay h3 {
+      font-family: var(--font-display);
+      font-size: 22px;
+      margin-bottom: 8px;
+      letter-spacing: 2px;
+    }
+
+    .quick-link-overlay p {
+      font-size: 13px;
+      opacity: 0.8;
+    }
+
+    /* Quote Section */
+    .quote-section {
+      padding: 100px 0;
+      background: linear-gradient(135deg, var(--orange) 0%, var(--orange-dark) 100%);
+      color: white;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .quote-section::before {
+      content: '"';
+      position: absolute;
+      top: -40px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 200px;
+      font-family: Georgia, serif;
+      opacity: 0.1;
+    }
+
+    .quote-text {
+      font-family: var(--font-heading);
+      font-size: 32px;
+      max-width: 800px;
+      margin: 0 auto 40px;
+      line-height: 1.8;
+      position: relative;
+      z-index: 1;
+    }
+
+    .quote-author {
+      font-size: 16px;
+      opacity: 0.8;
+      position: relative;
+      z-index: 1;
+      margin-top: 20px;
+    }
+
+    /* Orange Dissection Section */
+    .orange-dissection {
+      padding: 80px 0;
+      background: white;
+      overflow: hidden;
+    }
+
+    .dissection-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 80px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .orange-wrapper {
+      position: relative;
+      width: 300px;
+      height: 300px;
+      flex-shrink: 0;
+    }
+
+    .orange-full {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #FFA54F 0%, #FF8C00 50%, #E67300 100%);
+      box-shadow: 0 20px 60px rgba(255, 140, 0, 0.3), inset 0 -10px 30px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .orange-full::before {
+      content: '';
+      position: absolute;
+      top: 15%;
+      left: 20%;
+      width: 30%;
+      height: 20%;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      transform: rotate(-30deg);
+    }
+
+    .orange-full::after {
+      content: '🍊';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 80px;
+      opacity: 0.4;
+    }
+
+    .orange-wrapper.sliced .orange-full {
+      transform: scale(0.9);
+      opacity: 0;
+    }
+
+    .orange-halves {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .orange-wrapper.sliced .orange-halves {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .orange-half {
+      position: absolute;
+      width: 50%;
+      height: 100%;
+      overflow: hidden;
+      transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    .orange-half-left {
+      left: 0;
+      transform-origin: right center;
+    }
+
+    .orange-half-right {
+      right: 0;
+      transform-origin: left center;
+    }
+
+    .orange-wrapper.sliced .orange-half-left {
+      transform: translateX(-30px) rotate(-15deg);
+    }
+
+    .orange-wrapper.sliced .orange-half-right {
+      transform: translateX(30px) rotate(15deg);
+    }
+
+    .orange-half-inner {
+      width: 200%;
+      height: 100%;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #FFA54F 0%, #FF8C00 50%, #E67300 100%);
+      position: relative;
+    }
+
+    .orange-half-left .orange-half-inner {
+      transform: translateX(0);
+    }
+
+    .orange-half-right .orange-half-inner {
+      transform: translateX(-50%);
+    }
+
+    .orange-flesh {
+      position: absolute;
+      top: 10%;
+      width: 80%;
+      height: 80%;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+      overflow: hidden;
+    }
+
+    .orange-half-left .orange-flesh {
+      right: 5%;
+    }
+
+    .orange-half-right .orange-flesh {
+      left: 5%;
+    }
+
+    .orange-segment {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 45%;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.6);
+      transform-origin: left center;
+      border-radius: 0 4px 4px 0;
+    }
+
+    .orange-segment:nth-child(1) { transform: rotate(0deg); }
+    .orange-segment:nth-child(2) { transform: rotate(30deg); }
+    .orange-segment:nth-child(3) { transform: rotate(60deg); }
+    .orange-segment:nth-child(4) { transform: rotate(90deg); }
+    .orange-segment:nth-child(5) { transform: rotate(120deg); }
+    .orange-segment:nth-child(6) { transform: rotate(150deg); }
+
+    .click-hint {
+      position: absolute;
+      bottom: -40px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 13px;
+      color: var(--text-light);
+      white-space: nowrap;
+      transition: opacity 0.3s ease;
+    }
+
+    .orange-wrapper.sliced .click-hint {
+      opacity: 0;
+    }
+
+    .dissection-content {
+      max-width: 400px;
+    }
+
+    .dissection-content h2 {
+      font-family: var(--font-display);
+      font-size: 32px;
+      color: var(--text-dark);
+      margin-bottom: 20px;
+      letter-spacing: 2px;
+    }
+
+    .dissection-content p {
+      font-size: 16px;
+      color: var(--text-medium);
+      line-height: 1.9;
+      margin-bottom: 16px;
+    }
+
+    .dissection-tags {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s ease 0.4s;
+    }
+
+    .orange-wrapper.sliced ~ .dissection-content .dissection-tags {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .dissection-tag {
+      padding: 8px 20px;
+      background: var(--bg-light);
+      border-radius: 20px;
+      font-size: 14px;
+      color: var(--text-medium);
+    }
+
+    /* Ecological Cycle Section */
+    .ecological-cycle {
+      padding: 40px 0 60px;
+      background: linear-gradient(135deg, #f8f6f3 0%, #f0ebe4 100%);
+    }
+
+    .cycle-container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .cycle-flow {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      padding: 40px 0;
+    }
+
+    .cycle-flow::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 60px;
+      right: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--green), var(--orange), var(--green));
+      transform: translateY(-50%);
+      z-index: 0;
+    }
+
+    .cycle-step {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      flex: 1;
+    }
+
+    .cycle-icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 16px;
+      background: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+      transition: all 0.4s ease;
+      border: 3px solid transparent;
+    }
+
+    .cycle-step:hover .cycle-icon {
+      transform: scale(1.15);
+      border-color: var(--orange);
+      box-shadow: 0 12px 40px rgba(244, 132, 95, 0.2);
+    }
+
+    .cycle-step h4 {
+      font-family: var(--font-heading);
+      font-size: 15px;
+      color: var(--text-dark);
+      margin-bottom: 6px;
+    }
+
+    .cycle-step p {
+      font-size: 12px;
+      color: var(--text-light);
+    }
+
+    .cycle-arrow {
+      position: absolute;
+      top: 50%;
+      right: -20px;
+      transform: translateY(-50%);
+      font-size: 20px;
+      color: var(--orange);
+      z-index: 2;
+    }
+
+    .cycle-step:last-child .cycle-arrow {
+      display: none;
+    }
+
+    /* Product Carousel Section */
+    .product-carousel-section {
+      padding: 60px 0 80px;
+      background: white;
+      overflow: hidden;
+    }
+
+    .carousel-wrapper {
+      position: relative;
+      margin-top: 40px;
+    }
+
+    .carousel-track {
+      display: flex;
+      gap: 24px;
+      animation: scrollCarousel 25s linear infinite;
+    }
+
+    .carousel-track:hover {
+      animation-play-state: paused;
+    }
+
+    @keyframes scrollCarousel {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .carousel-item {
+      flex-shrink: 0;
+      width: 280px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+      transition: all 0.4s ease;
+      background: white;
+    }
+
+    .carousel-item:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 16px 50px rgba(0, 0, 0, 0.15);
+    }
+
+    .carousel-item img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .carousel-item-info {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .carousel-item-info h4 {
+      font-family: var(--font-heading);
+      font-size: 16px;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+    }
+
+    .carousel-item-info p {
+      font-size: 13px;
+      color: var(--text-medium);
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <span class="nav-logo-text">橙色满园</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">首页</a></li>
+        <li><a href="brand-story.html">品牌故事</a></li>
+        <li><a href="company.html">企业简介</a></li>
+        <li><a href="technology.html">核心技术</a></li>
+        <li><a href="products.html">产品展示</a></li>
+        <li><a href="honors.html">荣誉资质</a></li>
+        <li><a href="team.html">实践队</a></li>
+        <li><a href="timeline.html">实践历程</a></li>
+        <li><a href="more.html">更多</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-bg">
+      <img src="img/farm/page_12_v2.png" alt="品牌背景">
+      <div class="ink-circle ink-circle-1"></div>
+      <div class="ink-circle ink-circle-2"></div>
+      <div class="ink-circle ink-circle-3"></div>
+    </div>
+
+    <div class="hero-content animate-fadeInUp">
+      <p class="hero-brand">Beauty Orange Paradise</p>
+      <h1 class="hero-title">橙色<span>满园</span></h1>
+      <p class="hero-slogan">我们的橙皮不要丢</p>
+      <p class="hero-en">ECOLOGICAL ENZYME ORANGE FARM</p>
+      <div class="hero-deco"></div>
+      <div class="hero-cta cta-animated">
+        <a href="brand-story.html" class="btn btn-primary">探索品牌故事</a>
+        <a href="products.html" class="btn btn-outline">查看产品系列</a>
+      </div>
+    </div>
+
+    <div class="hero-scroll">
+      <span>向下滚动</span>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="stats-section">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-number" data-target="1200">0</div>
+          <div class="stat-unit">亩</div>
+          <div class="stat-label">标准化果园</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" data-target="7">0</div>
+          <div class="stat-unit">大系列</div>
+          <div class="stat-label">产品线</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" data-target="10">0</div>
+          <div class="stat-unit">年+</div>
+          <div class="stat-label">有机认证</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" data-target="100">0</div>
+          <div class="stat-unit">%</div>
+          <div class="stat-label">橙皮利用率</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quote Section -->
+  <section class="quote-section">
+    <div class="container">
+      <p class="quote-text">
+        "在生态农业的世界里，每一棵橙子树都不是生产线上的产品代码，而是一个有待我们认识、理解并陪伴其生长的独特生命。"
+      </p>
+      <p class="quote-author">—— 爱橙姐姐</p>
+    </div>
+  </section>
+
+  <!-- Orange Dissection -->
+  <section class="orange-dissection">
+    <div class="container">
+      <div class="dissection-container">
+        <div class="orange-wrapper" id="orangeWrapper" onclick="toggleOrange()">
+          <div class="orange-full"></div>
+          <div class="orange-halves">
+            <div class="orange-half orange-half-left">
+              <div class="orange-half-inner">
+                <div class="orange-flesh">
+                  <div class="orange-segment"></div>
+                  <div class="orange-segment"></div>
+                  <div class="orange-segment"></div>
+                  <div class="orange-segment"></div>
+                  <div class="orange-segment"></div>
+                  <div class="orange-segment"></div>
+                </div>
+              </div>
+            </div>
+            <div class="orange-half orange-half-right">
+              <div class="orange-half-inner">
+                <div class="orange-flesh">
+                  <div class="orange-segment"></div>
+                  <div class="orange-segment"></div>
+                  <div class="orange-segment"></div>
+                  <div class="orange-segment"></div>
+                  <div class="orange-segment"></div>
+                  <div class="orange-segment"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <span class="click-hint">← 点击切开橙子 →</span>
+        </div>
+        <div class="dissection-content">
+          <h2>一果两吃，物尽其用</h2>
+          <p>在爱橙姐姐的农场，每一个橙子都被赋予了完整的使命。果肉鲜食，果皮则可以泡茶、制香、做糕点。</p>
+          <p>这就是"我们的橙皮不要丢"的创新理念——珍惜自然资源，实现产品价值的最大化。</p>
+          <div class="dissection-tags">
+            <span class="dissection-tag">🍊 果肉鲜食</span>
+            <span class="dissection-tag">🍵 橙皮泡茶</span>
+            <span class="dissection-tag">🍪 橙皮做糕点</span>
+            <span class="dissection-tag">🍶 酿造果酒</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ecological Cycle -->
+  <section class="ecological-cycle">
+    <div class="container">
+      <div class="section-header section-header-animated visible" style="margin-bottom: 20px; margin-top: 0;">
+        <p class="en-title" style="margin-bottom: 8px;">ECOLOGICAL CYCLE</p>
+        <h2 style="margin-bottom: 8px;">生态循环系统</h2>
+        <div class="deco-line"></div>
+      </div>
+      <div class="cycle-container">
+        <div class="cycle-flow">
+          <div class="cycle-step">
+            <div class="cycle-icon">🌱</div>
+            <h4>优良土壤</h4>
+            <p>有机质种植基质</p>
+            <span class="cycle-arrow">→</span>
+          </div>
+          <div class="cycle-step">
+            <div class="cycle-icon">🧪</div>
+            <h4>酵素营养液</h4>
+            <p>微生物复合菌发酵</p>
+            <span class="cycle-arrow">→</span>
+          </div>
+          <div class="cycle-step">
+            <div class="cycle-icon">🌳</div>
+            <h4>生态种植</h4>
+            <p>零化学农药</p>
+            <span class="cycle-arrow">→</span>
+          </div>
+          <div class="cycle-step">
+            <div class="cycle-icon">🍊</div>
+            <h4>有机脐橙</h4>
+            <p>100%橙皮利用</p>
+            <span class="cycle-arrow">→</span>
+          </div>
+          <div class="cycle-step">
+            <div class="cycle-icon">♻️</div>
+            <h4>循环回田</h4>
+            <p>肥料回归土壤</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Product Carousel -->
+  <section class="product-carousel-section">
+    <div class="container">
+      <div class="section-header section-header-animated visible" style="margin-bottom: 10px; margin-top: 0;">
+        <p class="en-title" style="margin-bottom: 8px;">OUR PRODUCTS</p>
+        <h2 style="margin-bottom: 8px;">产品展示</h2>
+        <div class="deco-line"></div>
+      </div>
+    </div>
+    <div class="carousel-wrapper">
+      <div class="carousel-track">
+        <div class="carousel-item">
+          <img src="img/products/page_13.png" alt="橙果酒">
+          <div class="carousel-item-info">
+            <h4>橙果酒</h4>
+            <p>52度清香型，鲜爽醇和</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="img/products/page_14.png" alt="现泡橙C">
+          <div class="carousel-item-info">
+            <h4>现泡橙C</h4>
+            <p>0蔗0脂，原味鲜橙</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="img/products/page_15.png" alt="橙皮水果茶">
+          <div class="carousel-item-info">
+            <h4>橙皮水果茶</h4>
+            <p>暖胃养生，独立包装</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="img/products/page_18.png" alt="橙皮酥">
+          <div class="carousel-item-info">
+            <h4>橙皮酥</h4>
+            <p>香脆可口，橙香四溢</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="img/products/page_17.png" alt="工艺橙皮茶">
+          <div class="carousel-item-info">
+            <h4>工艺橙皮茶</h4>
+            <p>传统工艺，天然香气</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="img/products/page_16.png" alt="百日姜">
+          <div class="carousel-item-info">
+            <h4>百日姜</h4>
+            <p>生晒100天，暖身驱寒</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="img/products/page_19.png" alt="艾橙植香">
+          <div class="carousel-item-info">
+            <h4>艾橙植香</h4>
+            <p>纯植物天然线香</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="img/honors/3699ed63566429015966925168d2bca8.jpg" alt="橙咽宁">
+          <div class="carousel-item-info">
+            <h4>橙咽宁口腔喷雾</h4>
+            <p>医用级，10ml便携装</p>
+          </div>
+        </div>
+        <!-- Duplicate for infinite scroll -->
+        <div class="carousel-item">
+          <img src="img/products/page_13.png" alt="橙果酒">
+          <div class="carousel-item-info">
+            <h4>橙果酒</h4>
+            <p>52度清香型，鲜爽醇和</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="img/products/page_14.png" alt="现泡橙C">
+          <div class="carousel-item-info">
+            <h4>现泡橙C</h4>
+            <p>0蔗0脂，原味鲜橙</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="img/products/page_15.png" alt="橙皮水果茶">
+          <div class="carousel-item-info">
+            <h4>橙皮水果茶</h4>
+            <p>暖胃养生，独立包装</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="img/products/page_18.png" alt="橙皮酥">
+          <div class="carousel-item-info">
+            <h4>橙皮酥</h4>
+            <p>香脆可口，橙香四溢</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="img/products/page_17.png" alt="工艺橙皮茶">
+          <div class="carousel-item-info">
+            <h4>工艺橙皮茶</h4>
+            <p>传统工艺，天然香气</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="img/products/page_16.png" alt="百日姜">
+          <div class="carousel-item-info">
+            <h4>百日姜</h4>
+            <p>生晒100天，暖身驱寒</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="img/products/page_19.png" alt="艾橙植香">
+          <div class="carousel-item-info">
+            <h4>艾橙植香</h4>
+            <p>纯植物天然线香</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="img/honors/3699ed63566429015966925168d2bca8.jpg" alt="橙咽宁">
+          <div class="carousel-item-info">
+            <h4>橙咽宁口腔喷雾</h4>
+            <p>医用级，10ml便携装</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Links -->
+  <section class="quick-links">
+    <div class="container">
+      <div class="section-header section-header-animated visible" style="margin-bottom: 25px; margin-top: 0;">
+        <p class="en-title" style="margin-bottom: 8px;">EXPLORE</p>
+        <h2 style="margin-bottom: 8px;">探索橙色满园</h2>
+        <div class="deco-line"></div>
+      </div>
+
+      <div class="quick-links-grid">
+        <a href="brand-story.html" class="quick-link-card quick-link-square">
+          <img src="img/farm/page_05_new.png" alt="品牌故事">
+          <div class="quick-link-overlay">
+            <h3>品牌故事</h3>
+            <p>返乡创业新农人的初心与坚守</p>
+          </div>
+        </a>
+        <a href="technology.html" class="quick-link-card quick-link-square">
+          <img src="img/farm/page_10_v2.png" alt="核心技术">
+          <div class="quick-link-overlay">
+            <h3>酵素技术</h3>
+            <p>生态循环种植系统</p>
+          </div>
+        </a>
+        <a href="products.html" class="quick-link-card quick-link-square">
+          <img src="img/farm/page_11_v2.png" alt="产品展示">
+          <div class="quick-link-overlay">
+            <h3>产品系列</h3>
+            <p>七大产品线完整呈现</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <h3>橙色满园</h3>
+          <p>Beauty Orange Paradise - 爱橙姐姐的农场<br>
+          致力于打造全国绿色酵素农业标杆企业</p>
+        </div>
+        <div class="footer-links">
+          <h4>快速导航</h4>
+          <ul>
+            <li><a href="brand-story.html">品牌故事</a></li>
+            <li><a href="products.html">产品展示</a></li>
+            <li><a href="technology.html">核心技术</a></li>
+            <li><a href="honors.html">荣誉资质</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>联系我们</h4>
+          <ul>
+            <li>电话：18970619188</li>
+            <li>微信：ljm990818</li>
+            <li>邮箱：26151817@qq.com</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 江西博鑫农业有限公司 版权所有 | 橙色满园实践队</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleOrange() {
+      const wrapper = document.getElementById('orangeWrapper');
+      wrapper.classList.toggle('sliced');
+    }
+  </script>
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>实践历程 - 橙色满园</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    .timeline-hero {
+      min-height: 75vh;
+      background: linear-gradient(135deg, rgba(244, 132, 95, 0.1) 0%, rgba(42, 181, 160, 0.1) 100%);
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      text-align: center;
+      color: var(--text-dark);
+      position: relative;
+      overflow: hidden;
+      padding-bottom: 80px;
+    }
+
+    .timeline-hero-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+
+    .timeline-hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.25;
+    }
+
+    .timeline-hero h1 {
+      font-family: var(--font-display);
+      font-size: 56px;
+      margin-bottom: 20px;
+      letter-spacing: 6px;
+    }
+
+    .timeline-hero p {
+      font-size: 18px;
+      opacity: 0.9;
+    }
+
+    /* Timeline Section */
+    .timeline-section {
+      padding: 100px 0;
+      background: var(--bg-light);
+    }
+
+    .timeline-container {
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .timeline-line {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 3px;
+      height: 100%;
+      background: linear-gradient(180deg, var(--orange), var(--green));
+    }
+
+    .timeline-item {
+      position: relative;
+      padding: 40px 0;
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .timeline-item:nth-child(odd) {
+      flex-direction: row;
+    }
+
+    .timeline-item:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+
+    .timeline-content {
+      width: 45%;
+      padding: 30px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      position: relative;
+    }
+
+    .timeline-item:nth-child(odd) .timeline-content {
+      margin-right: auto;
+    }
+
+    .timeline-item:nth-child(even) .timeline-content {
+      margin-left: auto;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 20px;
+      height: 20px;
+      background: var(--orange);
+      border-radius: 50%;
+      border: 4px solid white;
+      box-shadow: 0 2px 10px rgba(244, 132, 95, 0.3);
+      z-index: 1;
+    }
+
+    .timeline-date {
+      font-family: var(--font-heading);
+      font-size: 14px;
+      color: var(--orange);
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .timeline-title {
+      font-family: var(--font-heading);
+      font-size: 20px;
+      color: var(--text-dark);
+      margin-bottom: 12px;
+    }
+
+    .timeline-text {
+      font-size: 14px;
+      color: var(--text-medium);
+      line-height: 1.8;
+    }
+
+    .timeline-tag {
+      display: inline-block;
+      padding: 4px 12px;
+      background: var(--bg-light);
+      border-radius: 20px;
+      font-size: 12px;
+      color: var(--text-light);
+      margin-top: 12px;
+    }
+
+    /* Year Markers */
+    .year-marker {
+      position: relative;
+      padding: 20px 0;
+      text-align: center;
+    }
+
+    .year-marker span {
+      display: inline-block;
+      padding: 12px 30px;
+      background: var(--orange);
+      color: white;
+      font-family: var(--font-heading);
+      font-size: 18px;
+      border-radius: 30px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Photo Gallery - Carousel */
+    .photo-gallery {
+      padding: 100px 0 80px;
+      background: var(--bg-white);
+      overflow: hidden;
+    }
+
+    .photo-carousel-wrapper {
+      position: relative;
+      margin-top: 40px;
+    }
+
+    .photo-carousel-track {
+      display: flex;
+      gap: 24px;
+      animation: scrollPhotos 20s linear infinite;
+    }
+
+    .photo-carousel-track:hover {
+      animation-play-state: paused;
+    }
+
+    @keyframes scrollPhotos {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .photo-carousel-item {
+      flex-shrink: 0;
+      width: 320px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+      transition: all 0.4s ease;
+      background: white;
+    }
+
+    .photo-carousel-item:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 16px 50px rgba(0, 0, 0, 0.15);
+    }
+
+    .photo-carousel-item img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .photo-carousel-item:hover img {
+      transform: scale(1.05);
+    }
+
+    /* Summary */
+    .timeline-summary {
+      padding: 100px 0;
+      background: linear-gradient(135deg, var(--text-dark) 0%, #1a1a1a 100%);
+      color: white;
+      text-align: center;
+    }
+
+    .summary-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+      margin-top: 60px;
+    }
+
+    .summary-stat h3 {
+      font-family: var(--font-heading);
+      font-size: 48px;
+      color: var(--orange);
+      margin-bottom: 8px;
+    }
+
+    .summary-stat p {
+      font-size: 14px;
+      opacity: 0.7;
+    }
+
+    /* CTA */
+    .timeline-cta {
+      padding: 100px 0;
+      text-align: center;
+    }
+
+    .timeline-cta h2 {
+      font-family: var(--font-display);
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+
+    .timeline-cta p {
+      font-size: 16px;
+      color: var(--text-medium);
+      margin-bottom: 40px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <span class="nav-logo-text">橙色满园</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">首页</a></li>
+        <li><a href="brand-story.html">品牌故事</a></li>
+        <li><a href="company.html">企业简介</a></li>
+        <li><a href="technology.html">核心技术</a></li>
+        <li><a href="products.html">产品展示</a></li>
+        <li><a href="honors.html">荣誉资质</a></li>
+        <li><a href="team.html">实践队</a></li>
+        <li><a href="timeline.html" class="active">实践历程</a></li>
+        <li><a href="more.html">更多</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="timeline-hero">
+    <div class="timeline-hero-bg">
+      <img src="img/LH1_8092.jpg" alt="实践背景">
+    </div>
+    <div style="position: relative; z-index: 1;">
+      <h1>实践历程</h1>
+      <p>从启动到成果，记录每一步成长</p>
+    </div>
+  </section>
+
+  <!-- Timeline -->
+  <section class="timeline-section">
+    <div class="container">
+      <div class="timeline-container">
+        <div class="timeline-line"></div>
+
+        <!-- 2025 -->
+        <div class="year-marker">
+          <span>2025年</span>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-date">12月</div>
+            <h3 class="timeline-title">项目启动</h3>
+            <p class="timeline-text">
+              "橙色满园"项目正式启动，依托厦门大学校长基金立项课题，聚焦生态农业品牌化困境。
+            </p>
+            <span class="timeline-tag">启动阶段</span>
+          </div>
+          <div class="timeline-dot"></div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-date">冬季</div>
+            <h3 class="timeline-title">首次实地调研</h3>
+            <p class="timeline-text">
+              团队前往江西永新"爱橙姐姐的农场"，与创始人刘江梅进行首次深度访谈，实地参观酵素种植园与加工工坊，完成前序研究报告。
+            </p>
+            <span class="timeline-tag">调研阶段</span>
+          </div>
+          <div class="timeline-dot"></div>
+        </div>
+
+        <!-- 2026 -->
+        <div class="year-marker">
+          <span>2026年</span>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-date">1月16日</div>
+            <h3 class="timeline-title">申报书提交</h3>
+            <p class="timeline-text">
+              完成创新训练项目申报书填写，项目通过学院专家评审（得分88分），获得推荐。
+            </p>
+            <span class="timeline-tag">申报阶段</span>
+          </div>
+          <div class="timeline-dot"></div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-date">2月23日</div>
+            <h3 class="timeline-title">学院推荐</h3>
+            <p class="timeline-text">
+              项目通过学院推荐，进入教务处审核流程，获得国家级大学生创新创业训练计划立项。
+            </p>
+            <span class="timeline-tag">立项阶段</span>
+          </div>
+          <div class="timeline-dot"></div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-date">6月29日</div>
+            <h3 class="timeline-title">暑期实践启动</h3>
+            <p class="timeline-text">
+              团队从厦门出发乘动车至吉安西站，转车至永新县，召开预备会，预演问卷与访谈。
+            </p>
+            <span class="timeline-tag">实践阶段</span>
+          </div>
+          <div class="timeline-dot"></div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-date">6月30日</div>
+            <h3 class="timeline-title">深度访谈与素材采集</h3>
+            <p class="timeline-text">
+              与创始人刘江梅进行正式深度访谈，参观种植园、车间、加工工坊，拍摄品牌宣传素材。
+            </p>
+            <span class="timeline-tag">访谈阶段</span>
+          </div>
+          <div class="timeline-dot"></div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-date">7月1-2日</div>
+            <h3 class="timeline-title">消费者问卷调研</h3>
+            <p class="timeline-text">
+              在永新县城和吉安市区开展线下问卷调研，实施A/B对照实验，目标回收有效问卷120份以上。同步线上投放问卷。
+            </p>
+            <span class="timeline-tag">调研阶段</span>
+          </div>
+          <div class="timeline-dot"></div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-date">7月3日</div>
+            <h3 class="timeline-title">补充调研与数据收集</h3>
+            <p class="timeline-text">
+              对运营团队进行补充访谈，收集淘宝、京东等平台同类产品数据，形成二手数据集。团队复盘总结。
+            </p>
+            <span class="timeline-tag">数据阶段</span>
+          </div>
+          <div class="timeline-dot"></div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-date">7月4日</div>
+            <h3 class="timeline-title">返程</h3>
+            <p class="timeline-text">
+              上午告别农场、确认后续合作；中午出发回厦门；晚上抵达。完成为期6天的暑期社会实践。
+            </p>
+            <span class="timeline-tag">总结阶段</span>
+          </div>
+          <div class="timeline-dot"></div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-date">8月</div>
+            <h3 class="timeline-title">成果产出</h3>
+            <p class="timeline-text">
+              完成实践总报告、品牌叙事升级方案、政策建议书及宣传片制作，形成可复制推广的"高价值农产品品牌速建"方法论工具包。
+            </p>
+            <span class="timeline-tag">成果阶段</span>
+          </div>
+          <div class="timeline-dot"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Photo Gallery -->
+  <section class="photo-gallery">
+    <div class="container">
+      <div class="section-header visible">
+        <p class="en-title">PHOTO GALLERY</p>
+        <h2>实践掠影</h2>
+        <div class="deco-line"></div>
+      </div>
+
+      <div class="photo-carousel-wrapper">
+        <div class="photo-carousel-track">
+          <div class="photo-carousel-item">
+            <img src="img/实践掠影/640.jpg" alt="实践掠影">
+          </div>
+          <div class="photo-carousel-item">
+            <img src="img/实践掠影/640 (1).jpg" alt="实践掠影">
+          </div>
+          <div class="photo-carousel-item">
+            <img src="img/实践掠影/640 (2).jpg" alt="实践掠影">
+          </div>
+          <div class="photo-carousel-item">
+            <img src="img/实践掠影/640 (3).jpg" alt="实践掠影">
+          </div>
+          <div class="photo-carousel-item">
+            <img src="img/实践掠影/640 (4).jpg" alt="实践掠影">
+          </div>
+          <div class="photo-carousel-item">
+            <img src="img/实践掠影/640 (5).jpg" alt="实践掠影">
+          </div>
+          <div class="photo-carousel-item">
+            <img src="img/实践掠影/640 (6).jpg" alt="实践掠影">
+          </div>
+          <div class="photo-carousel-item">
+            <img src="img/实践掠影/640 (7).jpg" alt="实践掠影">
+          </div>
+          <div class="photo-carousel-item">
+            <img src="img/实践掠影/640 (8).jpg" alt="实践掠影">
+          </div>
+          <div class="photo-carousel-item">
+            <img src="img/实践掠影/640 (9).jpg" alt="实践掠影">
+          </div>
+          <div class="photo-carousel-item">
+            <img src="img/实践掠影/640 (10).jpg" alt="实践掠影">
+          </div>
+          <div class="photo-carousel-item">
+            <img src="img/实践掠影/640 (11).jpg" alt="实践掠影">
+          </div>
+          <!-- Duplicate for infinite scroll -->
+          <div class="photo-carousel-item">
+            <img src="img/实践掠影/640.jpg" alt="实践掠影">
+          </div>
+          <div class="photo-carousel-item">
+            <img src="img/实践掠影/640 (1).jpg" alt="实践掠影">
+          </div>
+          <div class="photo-carousel-item">
+            <img src="img/实践掠影/640 (2).jpg" alt="实践掠影">
+          </div>
+          <div class="photo-carousel-item">
+            <img src="img/实践掠影/640 (3).jpg" alt="实践掠影">
+          </div>
+          <div class="photo-carousel-item">
+            <img src="img/实践掠影/640 (4).jpg" alt="实践掠影">
+          </div>
+          <div class="photo-carousel-item">
+            <img src="img/实践掠影/640 (5).jpg" alt="实践掠影">
+          </div>
+          <div class="photo-carousel-item">
+            <img src="img/实践掠影/640 (6).jpg" alt="实践掠影">
+          </div>
+          <div class="photo-carousel-item">
+            <img src="img/实践掠影/640 (7).jpg" alt="实践掠影">
+          </div>
+          <div class="photo-carousel-item">
+            <img src="img/实践掠影/640 (8).jpg" alt="实践掠影">
+          </div>
+          <div class="photo-carousel-item">
+            <img src="img/实践掠影/640 (9).jpg" alt="实践掠影">
+          </div>
+          <div class="photo-carousel-item">
+            <img src="img/实践掠影/640 (10).jpg" alt="实践掠影">
+          </div>
+          <div class="photo-carousel-item">
+            <img src="img/实践掠影/640 (11).jpg" alt="实践掠影">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Summary Stats -->
+  <section class="timeline-summary">
+    <div class="container">
+      <h2 style="font-family: var(--font-display); font-size: 36px; margin-bottom: 20px;">实践成果</h2>
+      <p style="font-size: 16px; opacity: 0.8;">用数据记录每一步成长</p>
+
+      <div class="summary-stats">
+        <div class="summary-stat">
+          <h3 data-target="6">0</h3>
+          <p>天实地调研</p>
+        </div>
+        <div class="summary-stat">
+          <h3 data-target="300">0</h3>
+          <p>份有效问卷</p>
+        </div>
+        <div class="summary-stat">
+          <h3 data-target="20">0</h3>
+          <p>人次深度访谈</p>
+        </div>
+        <div class="summary-stat">
+          <h3 data-target="5">0</h3>
+          <p>项研究成果</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="timeline-cta">
+    <div class="container">
+      <h2>了解更多</h2>
+      <p>探索橙色满园的更多故事</p>
+      <div class="cta-animated" style="display: flex; gap: 20px; justify-content: center;">
+        <a href="team.html" class="btn btn-primary">认识团队</a>
+        <a href="honors.html" class="btn btn-outline">查看荣誉</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <h3>橙色满园</h3>
+          <p>Beauty Orange Paradise - 爱橙姐姐的农场<br>致力于打造全国绿色酵素农业标杆企业</p>
+        </div>
+        <div class="footer-links">
+          <h4>快速导航</h4>
+          <ul>
+            <li><a href="brand-story.html">品牌故事</a></li>
+            <li><a href="products.html">产品展示</a></li>
+            <li><a href="technology.html">核心技术</a></li>
+            <li><a href="honors.html">荣誉资质</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>联系我们</h4>
+          <ul>
+            <li>电话：18970619188</li>
+            <li>微信：ljm990818</li>
+            <li>邮箱：26151817@qq.com</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 江西博鑫农业有限公司 版权所有 | 橙色满园实践队</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

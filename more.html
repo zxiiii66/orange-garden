@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>更多 - 橙色满园</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    .more-hero {
+      min-height: 50vh;
+      background: linear-gradient(135deg, rgba(244, 132, 95, 0.1) 0%, rgba(42, 181, 160, 0.1) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: var(--text-dark);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .more-hero-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+
+    .more-hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.25;
+    }
+
+    .more-hero h1 {
+      font-family: var(--font-display);
+      font-size: 56px;
+      margin-bottom: 20px;
+      letter-spacing: 6px;
+    }
+
+    .more-hero p {
+      font-size: 18px;
+      opacity: 0.9;
+    }
+
+    /* Section Navigation */
+    .section-nav {
+      padding: 60px 0;
+      background: var(--bg-white);
+    }
+
+    .nav-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 20px;
+    }
+
+    .nav-item {
+      padding: 30px 20px;
+      background: var(--bg-cream);
+      border-radius: 12px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .nav-item:hover {
+      background: var(--orange);
+      color: white;
+      transform: translateY(-3px);
+    }
+
+    .nav-item-icon {
+      font-size: 32px;
+      margin-bottom: 12px;
+    }
+
+    .nav-item h4 {
+      font-size: 16px;
+      margin-bottom: 4px;
+    }
+
+    .nav-item p {
+      font-size: 12px;
+      opacity: 0.7;
+    }
+
+    /* Farm History */
+    .farm-history {
+      padding: 100px 0;
+      background: var(--bg-light);
+    }
+
+    .history-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .history-item {
+      display: flex;
+      gap: 30px;
+      margin-bottom: 40px;
+      padding: 30px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .history-icon {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, var(--green), var(--green-dark));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      flex-shrink: 0;
+    }
+
+    .history-text h3 {
+      font-family: var(--font-heading);
+      font-size: 18px;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+    }
+
+    .history-text p {
+      font-size: 14px;
+      color: var(--text-medium);
+      line-height: 1.7;
+    }
+
+    /* Selection Standards */
+    .selection-standards {
+      padding: 100px 0;
+    }
+
+    .standards-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 40px;
+    }
+
+    .standard-card {
+      padding: 40px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .standard-card h3 {
+      font-family: var(--font-heading);
+      font-size: 20px;
+      color: var(--text-dark);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .standard-card h3 span {
+      width: 32px;
+      height: 32px;
+      background: var(--orange);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+    }
+
+    .standard-list {
+      list-style: none;
+    }
+
+    .standard-list li {
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border-light);
+      font-size: 14px;
+      color: var(--text-medium);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .standard-list li:last-child {
+      border-bottom: none;
+    }
+
+    .standard-list li::before {
+      content: '•';
+      color: var(--orange);
+      font-size: 18px;
+    }
+
+    /* Brand Visual */
+    .brand-visual {
+      padding: 100px 0;
+      background: var(--bg-white);
+    }
+
+    .visual-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+
+    .visual-card {
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .visual-card img {
+      width: 100%;
+      aspect-ratio: 2268 / 1106;
+      object-fit: cover;
+    }
+
+    .visual-card-content {
+      padding: 24px;
+    }
+
+    .visual-card-content h4 {
+      font-family: var(--font-heading);
+      font-size: 18px;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+    }
+
+    .visual-card-content p {
+      font-size: 13px;
+      color: var(--text-medium);
+      line-height: 1.6;
+    }
+
+    /* Media Section */
+    .media-section {
+      padding: 100px 0;
+    }
+
+    .media-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+    }
+
+    .media-card {
+      display: flex;
+      gap: 20px;
+      padding: 24px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+    }
+
+    .media-card:hover {
+      transform: translateX(5px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .media-card-icon {
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, var(--green), var(--green-dark));
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+
+    .media-card-content h4 {
+      font-size: 15px;
+      color: var(--text-dark);
+      margin-bottom: 6px;
+    }
+
+    .media-card-content p {
+      font-size: 13px;
+      color: var(--text-medium);
+      line-height: 1.5;
+      margin-bottom: 8px;
+    }
+
+    .media-card-content a {
+      font-size: 13px;
+      color: var(--orange);
+    }
+
+    /* Mission Vision Values */
+    .mvv-section {
+      padding: 100px 0;
+      background: linear-gradient(135deg, var(--text-dark) 0%, #1a1a1a 100%);
+      color: white;
+    }
+
+    .mvv-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+    }
+
+    .mvv-card {
+      padding: 50px 30px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      text-align: center;
+    }
+
+    .mvv-icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 24px;
+      background: linear-gradient(135deg, var(--orange), var(--orange-dark));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+    }
+
+    .mvv-card h3 {
+      font-family: var(--font-display);
+      font-size: 24px;
+      margin-bottom: 16px;
+    }
+
+    .mvv-card p {
+      font-size: 14px;
+      opacity: 0.8;
+      line-height: 1.8;
+    }
+
+    /* Contact Section */
+    .contact-section {
+      padding: 100px 0;
+      background: var(--bg-light);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+    }
+
+    .contact-info h2 {
+      font-family: var(--font-display);
+      font-size: 36px;
+      color: var(--text-dark);
+      margin-bottom: 30px;
+    }
+
+    .contact-item {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .contact-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--orange);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .contact-text h4 {
+      font-size: 14px;
+      color: var(--text-light);
+      margin-bottom: 4px;
+    }
+
+    .contact-text p {
+      font-size: 16px;
+      color: var(--text-dark);
+    }
+
+    .contact-form {
+      padding: 40px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .contact-form h3 {
+      font-family: var(--font-heading);
+      font-size: 22px;
+      color: var(--text-dark);
+      margin-bottom: 24px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 14px;
+      color: var(--text-medium);
+      margin-bottom: 8px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      font-size: 14px;
+      transition: border-color 0.3s ease;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--orange);
+    }
+
+    .form-group textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .form-submit {
+      width: 100%;
+      padding: 14px;
+      background: var(--orange);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .form-submit:hover {
+      background: var(--orange-dark);
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <span class="nav-logo-text">橙色满园</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">首页</a></li>
+        <li><a href="brand-story.html">品牌故事</a></li>
+        <li><a href="company.html">企业简介</a></li>
+        <li><a href="technology.html">核心技术</a></li>
+        <li><a href="products.html">产品展示</a></li>
+        <li><a href="honors.html">荣誉资质</a></li>
+        <li><a href="team.html">实践队</a></li>
+        <li><a href="timeline.html">实践历程</a></li>
+        <li><a href="more.html" class="active">更多</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="more-hero">
+    <div class="more-hero-bg">
+      <img src="img/farm/page_04.png" alt="更多背景">
+    </div>
+    <div style="position: relative; z-index: 1;">
+      <h1>更多内容</h1>
+      <p>探索橙色满园的方方面面</p>
+    </div>
+  </section>
+
+  <!-- Section Navigation -->
+  <section class="section-nav">
+    <div class="container">
+      <div class="nav-grid">
+        <a href="#farm-history" class="nav-item">
+          <div class="nav-item-icon">🏗️</div>
+          <h4>农场营建</h4>
+          <p>从选址到建成</p>
+        </a>
+        <a href="#selection" class="nav-item">
+          <div class="nav-item-icon">📋</div>
+          <h4>匠心选园</h4>
+          <p>严苛的种植标准</p>
+        </a>
+        <a href="#visual" class="nav-item">
+          <div class="nav-item-icon">🎨</div>
+          <h4>品牌视觉</h4>
+          <p>设计与应用</p>
+        </a>
+        <a href="#mvv" class="nav-item">
+          <div class="nav-item-icon">💎</div>
+          <h4>使命愿景</h4>
+          <p>我们的初心</p>
+        </a>
+        <a href="#contact" class="nav-item">
+          <div class="nav-item-icon">📞</div>
+          <h4>联系我们</h4>
+          <p>合作咨询</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Farm History -->
+  <section id="farm-history" class="farm-history">
+    <div class="container">
+      <div class="section-header visible">
+        <p class="en-title">FARM HISTORY</p>
+        <h2>农场营建历程</h2>
+        <div class="deco-line"></div>
+      </div>
+
+      <div class="history-content">
+        <div class="history-item">
+          <div class="history-icon">📍</div>
+          <div class="history-text">
+            <h3>暖意选址</h3>
+            <p>经过多方考察，最终选址江西永新县高桥楼镇，这里气候温和、水源充足、土壤肥沃，是种植脐橙的理想之地。</p>
+          </div>
+        </div>
+        <div class="history-item">
+          <div class="history-icon">🌾</div>
+          <div class="history-text">
+            <h3>土地准备</h3>
+            <p>对1200亩土地进行深翻改土，建立梯田系统，修建灌溉水渠和蓄水池，为种植打下坚实基础。</p>
+          </div>
+        </div>
+        <div class="history-item">
+          <div class="history-icon">🌱</div>
+          <div class="history-text">
+            <h3>品种选择</h3>
+            <p>精选优质井冈蜜橙品种，结合自研酵素微生物复合菌技术，开创绿色酵素橙种植模式。</p>
+          </div>
+        </div>
+        <div class="history-item">
+          <div class="history-icon">🍊</div>
+          <div class="history-text">
+            <h3>果菜栽培</h3>
+            <p>采用生态种植方式，鸡鸭除草除虫，防虫板物理防治，酵素发酵肥料，实现零化学农药。</p>
+          </div>
+        </div>
+        <div class="history-item">
+          <div class="history-icon">🏠</div>
+          <div class="history-text">
+            <h3>村舍改造</h3>
+            <p>建设现代化加工车间、科研大楼和"江梦源"研学基地，打造集种植、加工、教育于一体的生态农场。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Selection Standards -->
+  <section id="selection" class="selection-standards">
+    <div class="container">
+      <div class="section-header visible">
+        <p class="en-title">SELECTION STANDARDS</p>
+        <h2>匠心选园标准</h2>
+        <div class="deco-line"></div>
+        <p>每一个细节都经过严格把控</p>
+      </div>
+
+      <div class="standards-grid">
+        <div class="standard-card">
+          <h3><span>1</span>气候条件</h3>
+          <ul class="standard-list">
+            <li>年均气温：16~22°C</li>
+            <li>有效积温（≥10°C）：5000~9000°C</li>
+            <li>年极端最低气温：> -5°C</li>
+            <li>日照时数：1200~2200小时</li>
+          </ul>
+        </div>
+        <div class="standard-card">
+          <h3><span>2</span>环境要求</h3>
+          <ul class="standard-list">
+            <li>空气质量：总悬浮颗粒物 ≤ 0.3 mg/m³</li>
+            <li>土壤pH值：5.5~7.0</li>
+            <li>活土层：> 60cm</li>
+            <li>有机质含量：> 1.5%</li>
+          </ul>
+        </div>
+        <div class="standard-card">
+          <h3><span>3</span>地形地势</h3>
+          <ul class="standard-list">
+            <li>海拔：200~500米</li>
+            <li>坡度：< 25°</li>
+            <li>坡向：南坡和西坡为佳</li>
+            <li>避免凹地或低洼地</li>
+          </ul>
+        </div>
+        <div class="standard-card">
+          <h3><span>4</span>水源条件</h3>
+          <ul class="standard-list">
+            <li>年降雨量：1000mm以上</li>
+            <li>水源充足，不被污染</li>
+            <li>配备地下水滴灌系统</li>
+            <li>山顶蓄水池保障灌溉</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Brand Visual -->
+  <section id="visual" class="brand-visual">
+    <div class="container">
+      <div class="section-header visible">
+        <p class="en-title">BRAND VISUAL</p>
+        <h2>品牌视觉应用</h2>
+        <div class="deco-line"></div>
+      </div>
+
+      <div class="visual-grid">
+        <div class="visual-card">
+          <img src="img/farm/page_06.png" alt="品牌标志">
+          <div class="visual-card-content">
+            <h4>品牌标志</h4>
+            <p>以橙子为核心元素，融合"川"字造型，体现生态与活力</p>
+          </div>
+        </div>
+        <div class="visual-card">
+          <img src="img/farm/page_07.png" alt="品牌海报">
+          <div class="visual-card-content">
+            <h4>品牌海报</h4>
+            <p>"我们的橙皮不要丢"——品牌核心理念的视觉呈现</p>
+          </div>
+        </div>
+        <div class="visual-card">
+          <img src="img/farm/page_08.png" alt="农场全景">
+          <div class="visual-card-content">
+            <h4>农场航拍</h4>
+            <p>1200亩梯田式果园的壮观全景</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission Vision Values -->
+  <section id="mvv" class="mvv-section">
+    <div class="container">
+      <div class="section-header visible">
+        <p class="en-title" style="color: rgba(255,255,255,0.5);">MISSION · VISION · VALUES</p>
+        <h2 style="color: white;">使命 · 愿景 · 价值观</h2>
+        <div class="deco-line"></div>
+      </div>
+
+      <div class="mvv-grid">
+        <div class="mvv-card">
+          <div class="mvv-icon">🎯</div>
+          <h3>使命</h3>
+          <p>致力于为消费者提供安全、健康、美味的有机农产品，推动生态农业可持续发展，助力乡村振兴。</p>
+        </div>
+        <div class="mvv-card">
+          <div class="mvv-icon">🔭</div>
+          <h3>愿景</h3>
+          <p>打造全国绿色酵素农业标杆企业，让每一位消费者都能享受到高品质的生态食品。</p>
+        </div>
+        <div class="mvv-card">
+          <div class="mvv-icon">💎</div>
+          <h3>价值观</h3>
+          <p>生态优先、品质为本、创新驱动、合作共赢。我们相信，好的产品源于对自然的敬畏和对品质的执着。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="contact-section">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info">
+          <h2>联系我们</h2>
+
+          <div class="contact-item">
+            <div class="contact-icon">📍</div>
+            <div class="contact-text">
+              <h4>地址</h4>
+              <p>江西省吉安市永新县高桥楼镇</p>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">📞</div>
+            <div class="contact-text">
+              <h4>电话</h4>
+              <p>18970619188</p>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">💬</div>
+            <div class="contact-text">
+              <h4>微信</h4>
+              <p>ljm990818</p>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">📧</div>
+            <div class="contact-text">
+              <h4>邮箱</h4>
+              <p>26151817@qq.com</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form">
+          <h3>在线咨询</h3>
+          <form>
+            <div class="form-group">
+              <label>您的姓名</label>
+              <input type="text" placeholder="请输入您的姓名">
+            </div>
+            <div class="form-group">
+              <label>联系电话</label>
+              <input type="tel" placeholder="请输入您的联系电话">
+            </div>
+            <div class="form-group">
+              <label>咨询内容</label>
+              <textarea placeholder="请输入您想咨询的内容"></textarea>
+            </div>
+            <button type="submit" class="form-submit">提交咨询</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <h3>橙色满园</h3>
+          <p>Beauty Orange Paradise - 爱橙姐姐的农场<br>致力于打造全国绿色酵素农业标杆企业</p>
+        </div>
+        <div class="footer-links">
+          <h4>快速导航</h4>
+          <ul>
+            <li><a href="brand-story.html">品牌故事</a></li>
+            <li><a href="products.html">产品展示</a></li>
+            <li><a href="technology.html">核心技术</a></li>
+            <li><a href="honors.html">荣誉资质</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>联系我们</h4>
+          <ul>
+            <li>电话：18970619188</li>
+            <li>微信：ljm990818</li>
+            <li>邮箱：26151817@qq.com</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 江西博鑫农业有限公司 版权所有 | 橙色满园实践队</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

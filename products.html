@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>产品展示 - 橙色满园</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    .products-hero {
+      min-height: 60vh;
+      background: linear-gradient(135deg, rgba(244, 132, 95, 0.1) 0%, rgba(42, 181, 160, 0.1) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: var(--text-dark);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .products-hero-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+
+    .products-hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.25;
+    }
+
+    .products-hero h1 {
+      font-family: var(--font-display);
+      font-size: 56px;
+      margin-bottom: 20px;
+      letter-spacing: 6px;
+    }
+
+    .products-hero p {
+      font-size: 18px;
+      opacity: 0.9;
+      letter-spacing: 3px;
+    }
+
+    /* Product Categories */
+    .product-categories {
+      padding: 100px 0;
+    }
+
+    .category-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 60px;
+      flex-wrap: wrap;
+    }
+
+    .category-tab {
+      padding: 12px 30px;
+      background: transparent;
+      border: 1px solid var(--border-light);
+      border-radius: 30px;
+      font-size: 14px;
+      color: var(--text-medium);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .category-tab:hover,
+    .category-tab.active {
+      background: var(--orange);
+      border-color: var(--orange);
+      color: white;
+    }
+
+    /* Product Grid */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+    }
+
+    .product-item {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      transition: all 0.4s ease;
+    }
+
+    .product-item:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+    }
+
+    .product-image {
+      position: relative;
+      height: 280px;
+      overflow: hidden;
+    }
+
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .product-item:hover .product-image img {
+      transform: scale(1.05);
+    }
+
+    .product-badge {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      padding: 6px 14px;
+      background: var(--orange);
+      color: white;
+      font-size: 12px;
+      border-radius: 20px;
+    }
+
+    .product-info {
+      padding: 30px;
+    }
+
+    .product-name {
+      font-family: var(--font-heading);
+      font-size: 22px;
+      color: var(--text-dark);
+      margin-bottom: 12px;
+    }
+
+    .product-desc {
+      font-size: 14px;
+      color: var(--text-medium);
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .product-features {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .product-feature {
+      padding: 4px 12px;
+      background: var(--bg-light);
+      border-radius: 4px;
+      font-size: 12px;
+      color: var(--text-light);
+    }
+
+    /* Star Product Section */
+    .star-product {
+      padding: 100px 0;
+      background: var(--bg-light);
+    }
+
+    .star-product-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .star-product-image {
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+    }
+
+    .star-product-image img {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+    }
+
+    .star-product-content h2 {
+      font-family: var(--font-display);
+      font-size: 42px;
+      color: var(--text-dark);
+      margin-bottom: 24px;
+      letter-spacing: 3px;
+    }
+
+    .star-product-content p {
+      font-size: 16px;
+      color: var(--text-medium);
+      line-height: 2;
+      margin-bottom: 30px;
+    }
+
+    .star-product-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    .stat-box {
+      padding: 20px;
+      background: white;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .stat-box .value {
+      font-family: var(--font-heading);
+      font-size: 28px;
+      color: var(--orange);
+      margin-bottom: 4px;
+    }
+
+    .stat-box .label {
+      font-size: 12px;
+      color: var(--text-light);
+    }
+
+    /* Comparison Table */
+    .comparison-section {
+      padding: 100px 0;
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .comparison-table th {
+      background: var(--orange);
+      color: white;
+      padding: 20px;
+      text-align: left;
+      font-weight: 500;
+    }
+
+    .comparison-table td {
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .comparison-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .comparison-table tr:hover td {
+      background: var(--bg-light);
+    }
+
+    .highlight-cell {
+      color: var(--orange);
+      font-weight: 600;
+    }
+
+    /* CTA */
+    .products-cta {
+      padding: 100px 0;
+      background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
+      color: white;
+      text-align: center;
+    }
+
+    .products-cta h2 {
+      font-family: var(--font-display);
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+
+    .products-cta p {
+      font-size: 16px;
+      opacity: 0.9;
+      margin-bottom: 40px;
+    }
+
+    .products-cta .btn {
+      background: white;
+      color: var(--green);
+    }
+
+    .products-cta .btn:hover {
+      background: var(--bg-light);
+    }
+
+    /* Product Detail Modal */
+    .product-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 2000;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .product-modal.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 1;
+    }
+
+    .modal-content {
+      background: white;
+      border-radius: 16px;
+      max-width: 480px;
+      width: 90%;
+      max-height: 85vh;
+      overflow: hidden;
+      transform: scale(0.9);
+      transition: transform 0.3s ease;
+    }
+
+    .product-modal.active .modal-content {
+      transform: scale(1);
+    }
+
+    .modal-header {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+    }
+
+    .modal-header img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 36px;
+      height: 36px;
+      background: rgba(0, 0, 0, 0.45);
+      border: none;
+      border-radius: 50%;
+      color: white;
+      font-size: 22px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s ease;
+      z-index: 2;
+    }
+
+    .modal-close:hover {
+      background: rgba(0, 0, 0, 0.75);
+    }
+
+    .modal-body {
+      padding: 28px 24px 32px;
+    }
+
+    .modal-body h2 {
+      font-family: var(--font-heading);
+      font-size: 22px;
+      color: var(--text-dark);
+      margin-bottom: 12px;
+      letter-spacing: 1px;
+    }
+
+    .modal-body .modal-desc {
+      font-size: 14px;
+      color: var(--text-medium);
+      line-height: 1.9;
+      margin-bottom: 20px;
+    }
+
+    .modal-features {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .modal-feature {
+      padding: 6px 16px;
+      background: var(--bg-light);
+      border-radius: 20px;
+      font-size: 13px;
+      color: var(--text-medium);
+    }
+
+    .product-item {
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <span class="nav-logo-text">橙色满园</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">首页</a></li>
+        <li><a href="brand-story.html">品牌故事</a></li>
+        <li><a href="company.html">企业简介</a></li>
+        <li><a href="technology.html">核心技术</a></li>
+        <li><a href="products.html" class="active">产品展示</a></li>
+        <li><a href="honors.html">荣誉资质</a></li>
+        <li><a href="team.html">实践队</a></li>
+        <li><a href="timeline.html">实践历程</a></li>
+        <li><a href="more.html">更多</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="products-hero">
+    <div class="products-hero-bg">
+      <img src="img/products/page_11.png" alt="产品背景">
+    </div>
+    <div>
+      <h1>产品系列</h1>
+      <p>七大产品线 · 100%橙皮利用 · 酵素生态</p>
+    </div>
+  </section>
+
+  <!-- Star Product -->
+  <section class="star-product">
+    <div class="container">
+      <div class="star-product-grid">
+        <div class="star-product-image">
+          <img src="img/products/page_11(1).png" alt="酵素骄橙">
+        </div>
+        <div class="star-product-content">
+          <h2>酵素脐橙</h2>
+          <p>
+            精选1200亩标准化果园的有机脐橙，采用自研酵素微生物复合菌营养液培育，配合地下水滴灌和生物防治，实现零化学农药的生态种植。
+          </p>
+          <p>
+            果形圆润饱满，皮薄肉厚，汁水丰盈。最重要的是，果皮可安全食用——这是普通脐橙无法比拟的优势。
+          </p>
+
+          <div class="star-product-stats">
+            <div class="stat-box">
+              <div class="value" data-target="54.8">0</div>
+              <div class="label">mg/100g 维生素C</div>
+            </div>
+            <div class="stat-box">
+              <div class="value" data-target="7.9">0</div>
+              <div class="label">mg/g 蛋白质</div>
+            </div>
+            <div class="stat-box">
+              <div class="value" data-target="100">0</div>
+              <div class="label">有机认证</div>
+            </div>
+          </div>
+
+          <div class="product-features">
+            <span class="product-feature">有机种植</span>
+            <span class="product-feature">连皮可食</span>
+            <span class="product-feature">零农药</span>
+            <span class="product-feature">一年一季</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Product Categories -->
+  <section class="product-categories">
+    <div class="container">
+      <div class="section-header visible">
+        <p class="en-title">PRODUCTS</p>
+        <h2>全部产品</h2>
+        <div class="deco-line"></div>
+      </div>
+
+      <div class="category-tabs">
+        <button class="category-tab active">全部</button>
+        <button class="category-tab">饮品</button>
+        <button class="category-tab">零食</button>
+        <button class="category-tab">茶饮</button>
+        <button class="category-tab">日用</button>
+      </div>
+
+      <div class="product-grid">
+        <!-- 橙果酒 -->
+        <div class="product-item" onclick="openProductDetail('orange-wine')">
+          <div class="product-image">
+            <img src="img/products/page_13.png" alt="橙果酒">
+            <span class="product-badge">热销</span>
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">橙果酒</h3>
+            <p class="product-desc">清香型橙果酒，酒精度52%vol，采用传统古法工艺酿造，鲜爽醇和，果香浓郁。</p>
+            <div class="product-features">
+              <span class="product-feature">52度</span>
+              <span class="product-feature">清香型</span>
+              <span class="product-feature">古法工艺</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 现泡橙C -->
+        <div class="product-item" onclick="openProductDetail('orange-c')">
+          <div class="product-image">
+            <img src="img/products/page_14.png" alt="现泡橙C">
+            <span class="product-badge">新品</span>
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">现泡橙C</h3>
+            <p class="product-desc">0蔗0脂原味鲜橙饮料，净含量420ml，保留酵素脐橙的天然营养与鲜甜口感。</p>
+            <div class="product-features">
+              <span class="product-feature">0蔗</span>
+              <span class="product-feature">0脂</span>
+              <span class="product-feature">420ml</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 橙皮水果茶 -->
+        <div class="product-item" onclick="openProductDetail('fruit-tea')">
+          <div class="product-image">
+            <img src="img/products/page_15.png" alt="橙皮水果茶">
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">橙皮水果茶</h3>
+            <p class="product-desc">独立条装冲泡茶饮，粉紫渐变包装，暖胃养生，方便携带，随时随地享受橙香。</p>
+            <div class="product-features">
+              <span class="product-feature">独立包装</span>
+              <span class="product-feature">暖胃</span>
+              <span class="product-feature">便携</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 艾橙植香 -->
+        <div class="product-item" onclick="openProductDetail('aromatherapy')">
+          <div class="product-image">
+            <img src="img/products/page_19.png" alt="艾橙植香">
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">艾橙植香</h3>
+            <p class="product-desc">纯植物天然线香，以橙皮、艾草、檀木为原料，清新淡雅，安神助眠，营造温馨生活氛围。</p>
+            <div class="product-features">
+              <span class="product-feature">纯植物</span>
+              <span class="product-feature">天然线香</span>
+              <span class="product-feature">安神</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 橙皮酥 -->
+        <div class="product-item" onclick="openProductDetail('orange-crisp')">
+          <div class="product-image">
+            <img src="img/products/page_18.png" alt="橙皮酥">
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">橙皮酥</h3>
+            <p class="product-desc">橘橙色大包装饼干，透明窗口设计可见内部饼干，香脆可口，橙香四溢。</p>
+            <div class="product-features">
+              <span class="product-feature">饼干</span>
+              <span class="product-feature">香脆</span>
+              <span class="product-feature">橙香</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 工艺橙皮茶 -->
+        <div class="product-item" onclick="openProductDetail('craft-tea')">
+          <div class="product-image">
+            <img src="img/products/page_17.png" alt="工艺橙皮茶">
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">工艺橙皮茶</h3>
+            <p class="product-desc">长条形竹筒/纸质包装，橘橙+翠绿搭配，传统工艺制作，保留橙皮天然香气。</p>
+            <div class="product-features">
+              <span class="product-feature">竹筒包装</span>
+              <span class="product-feature">传统工艺</span>
+              <span class="product-feature">天然</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 百日姜 -->
+        <div class="product-item" onclick="openProductDetail('ginger-tea')">
+          <div class="product-image">
+            <img src="img/products/page_16.png" alt="百日姜">
+            <span class="product-badge">时令养生</span>
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">百日姜</h3>
+            <p class="product-desc">生晒百日姜，端午至中秋自然晒足100天，罐装锁鲜，暖身驱寒，四季养生佳品。</p>
+            <div class="product-features">
+              <span class="product-feature">生晒100天</span>
+              <span class="product-feature">暖身驱寒</span>
+              <span class="product-feature">罐装</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 口腔喷雾 -->
+        <div class="product-item" onclick="openProductDetail('spray')">
+          <div class="product-image">
+            <img src="img/honors/3699ed63566429015966925168d2bca8.jpg" alt="橙咽宁">
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">橙咽宁口腔喷雾</h3>
+            <p class="product-desc">医用级口腔护理产品，缓解口腔黏膜炎症及溃疡，10ml便携装。</p>
+            <div class="product-features">
+              <span class="product-feature">医用级</span>
+              <span class="product-feature">10ml</span>
+              <span class="product-feature">便携</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Comparison -->
+  <section class="comparison-section">
+    <div class="container">
+      <div class="section-header visible">
+        <p class="en-title">COMPARISON</p>
+        <h2>品质对比</h2>
+        <div class="deco-line"></div>
+        <p>数据说话，酵素脐橙的营养成分全面领先</p>
+      </div>
+
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>检测项目</th>
+            <th>酵素脐橙</th>
+            <th>赣南脐橙A级果</th>
+            <th>优势</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>维生素C (mg/100g)</td>
+            <td class="highlight-cell">54.8</td>
+            <td>48.1</td>
+            <td class="highlight-cell">+13.9%</td>
+          </tr>
+          <tr>
+            <td>蛋白质 (mg/g)</td>
+            <td class="highlight-cell">7.9</td>
+            <td>6.4</td>
+            <td class="highlight-cell">+23.4%</td>
+          </tr>
+          <tr>
+            <td>总黄酮 (mg/g)</td>
+            <td class="highlight-cell">75.3</td>
+            <td>-</td>
+            <td class="highlight-cell">独有优势</td>
+          </tr>
+          <tr>
+            <td>还原糖 (mg/g)</td>
+            <td class="highlight-cell">258</td>
+            <td>-</td>
+            <td class="highlight-cell">口感更甜</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="products-cta">
+    <div class="container">
+      <h2>想了解更多产品信息？</h2>
+      <p>联系我们，获取完整产品目录和价格信息</p>
+      <div class="cta-animated">
+        <a href="more.html#contact" class="btn">联系我们</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <h3>橙色满园</h3>
+          <p>Beauty Orange Paradise - 爱橙姐姐的农场<br>致力于打造全国绿色酵素农业标杆企业</p>
+        </div>
+        <div class="footer-links">
+          <h4>快速导航</h4>
+          <ul>
+            <li><a href="brand-story.html">品牌故事</a></li>
+            <li><a href="products.html">产品展示</a></li>
+            <li><a href="technology.html">核心技术</a></li>
+            <li><a href="honors.html">荣誉资质</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>联系我们</h4>
+          <ul>
+            <li>电话：18970619188</li>
+            <li>微信：ljm990818</li>
+            <li>邮箱：26151817@qq.com</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 江西博鑫农业有限公司 版权所有 | 橙色满园实践队</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Product Detail Modal -->
+  <div class="product-modal" id="productModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <img id="modalImage" src="" alt="">
+        <button class="modal-close" onclick="closeProductDetail()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <h2 id="modalTitle"></h2>
+        <p class="modal-desc" id="modalDesc"></p>
+        <div class="modal-features" id="modalFeatures"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script>
+    // Product detail data
+    const productData = {
+      'orange-wine': {
+        title: '橙果酒',
+        image: 'img/products/page_13.png',
+        desc: '清香型橙果酒，酒精度52%vol，采用传统古法工艺酿造，鲜爽醇和，果香浓郁。精选酵素脐橙为原料，经过多道工序精心酿制，保留了橙子的天然香气和营养成分。',
+        features: ['52度', '清香型', '古法工艺', '酵素脐橙原料']
+      },
+      'orange-c': {
+        title: '现泡橙C',
+        image: 'img/products/page_14.png',
+        desc: '0蔗0脂原味鲜橙饮料，净含量420ml，保留酵素脐橙的天然营养与鲜甜口感。采用先进锁鲜技术，让每一口都能品尝到新鲜橙子的味道。',
+        features: ['0蔗', '0脂', '420ml', '锁鲜技术']
+      },
+      'fruit-tea': {
+        title: '橙皮水果茶',
+        image: 'img/products/page_15.png',
+        desc: '独立条装冲泡茶饮，粉紫渐变包装，暖胃养生，方便携带，随时随地享受橙香。精选优质橙皮搭配多种水果，口感丰富，营养均衡。',
+        features: ['独立包装', '暖胃', '便携', '多种水果']
+      },
+      'aromatherapy': {
+        title: '艾橙植香',
+        image: 'img/products/page_19.png',
+        desc: '纯植物天然线香，以橙皮、艾草、檀木为原料，清新淡雅，安神助眠，营造温馨生活氛围。搭配橙子造型香插，趣味十足。',
+        features: ['纯植物', '天然线香', '安神', '橙皮+艾草+檀木']
+      },
+      'orange-crisp': {
+        title: '橙皮酥',
+        image: 'img/products/page_18.png',
+        desc: '橘橙色大包装饼干，透明窗口设计可见内部饼干，香脆可口，橙香四溢。将橙皮融入饼干制作，既保留了橙皮的营养，又增添了独特风味。',
+        features: ['饼干', '香脆', '橙香', '橙皮入料']
+      },
+      'craft-tea': {
+        title: '工艺橙皮茶',
+        image: 'img/products/page_17.png',
+        desc: '长条形竹筒/纸质包装，橘橙+翠绿搭配，传统工艺制作，保留橙皮天然香气。经过多道传统工序炮制，茶汤清澈，香气持久。',
+        features: ['竹筒包装', '传统工艺', '天然', '茶汤清澈']
+      },
+      'ginger-tea': {
+        title: '百日姜',
+        image: 'img/products/page_16.png',
+        desc: '生晒百日姜，端午至中秋自然晒足100天，罐装锁鲜，暖身驱寒，四季养生佳品。采用传统生晒工艺，保留生姜最纯正的风味与功效。',
+        features: ['生晒100天', '暖身驱寒', '罐装', '传统工艺']
+      },
+      'spray': {
+        title: '橙咽宁口腔喷雾',
+        image: 'img/honors/3699ed63566429015966925168d2bca8.jpg',
+        desc: '医用级口腔护理产品，缓解口腔黏膜炎症及溃疡，10ml便携装。采用天然橙皮提取物，温和不刺激，随时随地呵护口腔健康。',
+        features: ['医用级', '10ml', '便携', '天然提取物']
+      }
+    };
+
+    function openProductDetail(productId) {
+      const product = productData[productId];
+      if (!product) return;
+
+      document.getElementById('modalImage').src = product.image;
+      document.getElementById('modalTitle').textContent = product.title;
+      document.getElementById('modalDesc').textContent = product.desc;
+
+      const featuresContainer = document.getElementById('modalFeatures');
+      featuresContainer.innerHTML = product.features.map(f =>
+        `<span class="modal-feature">${f}</span>`
+      ).join('');
+
+      const modal = document.getElementById('productModal');
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeProductDetail() {
+      const modal = document.getElementById('productModal');
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    // Close modal on background click
+    document.getElementById('productModal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeProductDetail();
+      }
+    });
+
+    // Close modal on Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeProductDetail();
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>品牌故事 - 橙色满园</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    .story-hero {
+      min-height: 70vh;
+      background: linear-gradient(135deg, rgba(244, 132, 95, 0.1) 0%, rgba(42, 181, 160, 0.1) 100%);
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .story-hero-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+
+    .story-hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.3;
+    }
+
+    .story-hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 160px 40px 80px;
+      text-align: center;
+    }
+
+    .story-hero h1 {
+      font-family: var(--font-display);
+      font-size: 56px;
+      color: var(--text-dark);
+      margin-bottom: 20px;
+      letter-spacing: 6px;
+    }
+
+    .story-hero .tagline {
+      font-family: var(--font-heading);
+      font-size: 20px;
+      color: var(--text-medium);
+      letter-spacing: 3px;
+    }
+
+    /* Story Sections */
+    .story-section {
+      padding: 100px 0;
+    }
+
+    .story-section:nth-child(even) {
+      background: var(--bg-white);
+    }
+
+    .story-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .story-grid.reverse {
+      direction: rtl;
+    }
+
+    .story-grid.reverse > * {
+      direction: ltr;
+    }
+
+    .story-image {
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+    }
+
+    .story-image img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+    }
+
+    .story-image-square {
+      aspect-ratio: 1 / 1;
+    }
+
+    .story-image-square img {
+      height: 100%;
+    }
+
+    .story-content h2 {
+      font-family: var(--font-display);
+      font-size: 32px;
+      color: var(--text-dark);
+      margin-bottom: 24px;
+      letter-spacing: 2px;
+    }
+
+    .story-content p {
+      font-size: 16px;
+      color: var(--text-medium);
+      line-height: 2;
+      margin-bottom: 20px;
+    }
+
+    .story-content .highlight {
+      color: var(--orange);
+      font-weight: 500;
+    }
+
+    /* Story section entrance animations */
+    .story-grid .story-image,
+    .story-grid .story-content {
+      opacity: 0;
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .story-grid .story-image {
+      transform: translateX(-40px) scale(1.05);
+    }
+
+    .story-grid .story-content {
+      transform: translateX(40px);
+      transition-delay: 0.15s;
+    }
+
+    .story-grid.revealed .story-image {
+      opacity: 1;
+      transform: translateX(0) scale(1);
+    }
+
+    .story-grid.revealed .story-content {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .story-grid.reverse .story-image {
+      transform: translateX(40px) scale(1.05);
+    }
+
+    .story-grid.reverse .story-content {
+      transform: translateX(-40px);
+    }
+
+    .story-grid.reverse.revealed .story-image {
+      transform: translateX(0) scale(1);
+    }
+
+    .story-grid.reverse.revealed .story-content {
+      transform: translateX(0);
+    }
+
+    /* Quote Block */
+    .story-quote {
+      padding: 80px 0;
+      background: linear-gradient(135deg, var(--orange) 0%, var(--orange-dark) 100%);
+      color: white;
+      text-align: center;
+    }
+
+    .story-quote blockquote {
+      font-family: var(--font-heading);
+      font-size: 28px;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.8;
+      position: relative;
+    }
+
+    .story-quote blockquote::before {
+      content: '"';
+      font-size: 120px;
+      position: absolute;
+      top: -40px;
+      left: -40px;
+      opacity: 0.2;
+      font-family: Georgia, serif;
+    }
+
+    .story-quote cite {
+      display: block;
+      margin-top: 30px;
+      font-size: 16px;
+      font-style: normal;
+      opacity: 0.8;
+    }
+
+    /* Timeline */
+    .story-timeline {
+      padding: 100px 0;
+      background: var(--bg-light);
+    }
+
+    .timeline {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      height: 100%;
+      background: linear-gradient(180deg, var(--orange), var(--green));
+    }
+
+    .timeline-item {
+      position: relative;
+      padding: 30px 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .timeline-item:nth-child(odd) {
+      flex-direction: row;
+    }
+
+    .timeline-item:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+
+    .timeline-content {
+      width: 45%;
+      padding: 30px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 16px;
+      height: 16px;
+      background: var(--orange);
+      border-radius: 50%;
+      border: 3px solid white;
+      box-shadow: 0 2px 8px rgba(244, 132, 95, 0.3);
+    }
+
+    .timeline-year {
+      font-family: var(--font-heading);
+      font-size: 24px;
+      color: var(--orange);
+      margin-bottom: 10px;
+    }
+
+    .timeline-text {
+      font-size: 14px;
+      color: var(--text-medium);
+      line-height: 1.8;
+    }
+
+    /* CTA Section */
+    .story-cta {
+      padding: 100px 0;
+      text-align: center;
+    }
+
+    .story-cta h2 {
+      font-family: var(--font-display);
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+
+    .story-cta p {
+      font-size: 16px;
+      color: var(--text-medium);
+      margin-bottom: 40px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <span class="nav-logo-text">橙色满园</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">首页</a></li>
+        <li><a href="brand-story.html" class="active">品牌故事</a></li>
+        <li><a href="company.html">企业简介</a></li>
+        <li><a href="technology.html">核心技术</a></li>
+        <li><a href="products.html">产品展示</a></li>
+        <li><a href="honors.html">荣誉资质</a></li>
+        <li><a href="team.html">实践队</a></li>
+        <li><a href="timeline.html">实践历程</a></li>
+        <li><a href="more.html">更多</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="story-hero">
+    <div class="story-hero-bg">
+      <img src="img/farm/page_09.png" alt="农场">
+    </div>
+    <div class="story-hero-content">
+      <h1>品牌故事</h1>
+      <p class="tagline">这是一个回乡创业新农人的故事</p>
+    </div>
+  </section>
+
+  <!-- Story Section 1: Origin -->
+  <section class="story-section">
+    <div class="container">
+      <div class="story-grid">
+        <div class="story-image">
+          <img src="img/farm/page_05_v2.png" alt="创始人">
+        </div>
+        <div class="story-content">
+          <h2>初心：从城市到乡村</h2>
+          <p>
+            2013年，一个勇敢的决定改变了一切。创始人<span class="highlight">刘江梅</span>放弃了城市的工作机会，毅然回到家乡江西永新，开始了她的农业创业之路。
+          </p>
+          <p>
+            投资千万元，她建立了一个生态示范农场，将现代化的农业技术与传统的生态种植理念相结合。这不仅仅是一个农场，更是一个<span class="highlight">梦想的起点</span>。
+          </p>
+          <p>
+            "像养育孩子一样养育一片会呼吸的橙林"——这是爱橙姐姐的信念，也是整个品牌的灵魂。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quote -->
+  <section class="story-quote">
+    <div class="container">
+      <blockquote>
+        每一棵橙子树都不是生产线上的产品代码，而是一个有待我们认识、理解并陪伴其生长的独特生命。
+        <cite>—— 爱橙姐姐</cite>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- Story Section 2: Philosophy -->
+  <section class="story-section">
+    <div class="container">
+      <div class="story-grid reverse">
+        <div class="story-image story-image-square">
+          <img src="img/farm/page_06_new.png" alt="品牌理念">
+        </div>
+        <div class="story-content">
+          <h2>理念：我们的橙皮不要丢</h2>
+          <p>
+            在爱橙姐姐的农场，每一个橙子都被赋予了<span class="highlight">完整的使命</span>。果肉鲜食，果皮则可以泡茶、制香、做糕点——这就是"一果两吃"的创新理念。
+          </p>
+          <p>
+            这不仅仅是一种产品策略，更是一种<span class="highlight">生活哲学</span>：珍惜自然资源，实现产品价值的最大化。
+          </p>
+          <p>
+            从橙果酒到现泡橙C饮料，从橙皮酥到工艺橙皮茶，每一款产品都承载着对品质的追求和对自然的敬畏。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Orange Cut Signature Animation -->
+  <section class="orange-cut-section story-section" style="background: var(--bg-white);">
+    <div class="container">
+      <div class="section-header visible">
+        <p class="en-title">ONE FRUIT, TWO USES</p>
+        <h2>一果两吃，物尽其用</h2>
+        <div class="deco-line"></div>
+      </div>
+
+      <div class="orange-cut-animation">
+        <!-- Decorative juice splash -->
+        <div class="juice-splash"></div>
+
+        <!-- Orange Halves -->
+        <div class="orange-halves">
+          <div class="orange-half-left"></div>
+          <div class="orange-half-right"></div>
+        </div>
+
+        <!-- 100% text in center -->
+        <div class="orange-center">
+          <div class="cut-percent">100<span>%</span></div>
+        </div>
+
+        <!-- Product images fly to corners -->
+        <div class="cut-product-fly p1">
+          <img src="img/products/page_13_1.png" alt="橙果酒">
+          <span>橙果酒</span>
+        </div>
+        <div class="cut-product-fly p2">
+          <img src="img/products/page_15_1.png" alt="现泡橙C">
+          <span>现泡橙C</span>
+        </div>
+        <div class="cut-product-fly p3">
+          <img src="img/products/page_18.png" alt="橙皮茶">
+          <span>橙皮茶</span>
+        </div>
+        <div class="cut-product-fly p4">
+          <img src="img/products/page_16.png" alt="橙皮酥">
+          <span>橙皮酥</span>
+        </div>
+      </div>
+
+      <div class="cut-signature">
+        <h3>每一颗橙子都有完整的使命</h3>
+        <p>果肉鲜食，果皮深加工——实现100%资源利用</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Story Section 3: Technology -->
+  <section class="story-section">
+    <div class="container">
+      <div class="story-grid">
+        <div class="story-image story-image-square">
+          <img src="img/farm/page_10_v2.png" alt="酵素技术">
+        </div>
+        <div class="story-content">
+          <h2>技术：酵素生态种植</h2>
+          <p>
+            爱橙姐姐的农场独创了<span class="highlight">酵素微生物复合菌营养液</span>发酵技术，开创了绿色酵素橙种植的先河。
+          </p>
+          <p>
+            通过自研酵素营养液配合生物防治、地下水滴灌系统，实现了<span class="highlight">零化学农药</span>的生态种植。
+          </p>
+          <p>
+            鸡鸭在果园里自由活动，防虫板守护着每一棵果树，酵素发酵让土壤充满生机——这是一个完整的生态循环系统。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Story Section 4: Products -->
+  <section class="story-section">
+    <div class="container">
+      <div class="story-grid reverse">
+        <div class="story-image story-image-square">
+          <img src="img/farm/page_11_v2.png" alt="产品系列">
+        </div>
+        <div class="story-content">
+          <h2>产品：从果园到生活</h2>
+          <p>
+            <span class="highlight">七大产品系列</span>，覆盖了从饮品到零食、从日用到养生的完整产品矩阵。
+          </p>
+          <p>
+            清香型橙果酒、0蔗0脂的现泡橙C、暖胃的橙皮水果茶、香脆的橙皮酥、蜜饯橙皮丁、工艺橙皮茶，以及冬季限定的姜茶系列。
+          </p>
+          <p>
+            每一款产品都经过精心研发，确保保留酵素脐橙的<span class="highlight">天然营养</span>，同时满足现代消费者的多样化需求。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="story-cta">
+    <div class="container">
+      <h2>探索更多</h2>
+      <p>了解爱橙姐姐的农场如何将生态理念转化为优质产品</p>
+      <div class="cta-animated" style="display: flex; gap: 20px; justify-content: center;">
+        <a href="products.html" class="btn btn-primary">查看产品系列</a>
+        <a href="technology.html" class="btn btn-outline">了解核心技术</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <h3>橙色满园</h3>
+          <p>Beauty Orange Paradise - 爱橙姐姐的农场<br>致力于打造全国绿色酵素农业标杆企业</p>
+        </div>
+        <div class="footer-links">
+          <h4>快速导航</h4>
+          <ul>
+            <li><a href="brand-story.html">品牌故事</a></li>
+            <li><a href="products.html">产品展示</a></li>
+            <li><a href="technology.html">核心技术</a></li>
+            <li><a href="honors.html">荣誉资质</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>联系我们</h4>
+          <ul>
+            <li>电话：18970619188</li>
+            <li>微信：ljm990818</li>
+            <li>邮箱：26151817@qq.com</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 江西博鑫农业有限公司 版权所有 | 橙色满园实践队</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
