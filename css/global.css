@@ -1704,6 +1704,160 @@ img {
 }
 
 /* ============================================
+   Responsive - Small Phone (<=480px)
+   ============================================ */
+@media (max-width: 480px) {
+  /* Team members: horizontal card layout */
+  .members-grid {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+
+  .member-card {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: stretch;
+  }
+
+  .member-card .member-photo {
+    width: 100px !important;
+    height: auto !important;
+    min-height: 120px;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  .member-card .member-info {
+    padding: 12px 16px !important;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .member-card h4 {
+    font-size: 14px !important;
+    margin-bottom: 4px !important;
+  }
+
+  .member-card .member-dept {
+    font-size: 11px !important;
+    margin-bottom: 6px !important;
+  }
+
+  .member-card .member-desc {
+    font-size: 11px !important;
+    line-height: 1.5 !important;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .instructor-card {
+    flex-direction: row !important;
+  }
+
+  .instructor-card .member-photo {
+    width: 100px !important;
+    height: auto !important;
+    aspect-ratio: 1 / 1;
+  }
+
+  .instructor-card .member-info {
+    padding: 12px 16px !important;
+  }
+
+  .instructor-card h4 {
+    font-size: 15px !important;
+  }
+
+  /* Honors grid: 1 column */
+  .honors-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Stats: 2 columns stays fine, but make items more compact */
+  .stat-item {
+    padding: 16px 8px !important;
+  }
+
+  .stat-number {
+    font-size: 28px !important;
+  }
+
+  /* Company page - Vision Mission grid */
+  .vm-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  .vm-card {
+    padding: 24px 20px !important;
+  }
+
+  .vm-card h3 {
+    font-size: 18px !important;
+    margin-bottom: 12px !important;
+  }
+
+  .vm-card p {
+    font-size: 13px !important;
+  }
+
+  /* Team page - Project info */
+  .project-grid {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+
+  .project-card {
+    padding: 24px 20px !important;
+  }
+
+  .project-card h3 {
+    font-size: 18px !important;
+    margin-bottom: 14px !important;
+  }
+
+  .project-card li {
+    padding: 10px 0 !important;
+    font-size: 13px !important;
+  }
+
+  /* Team page - Methods & Achievements */
+  .methods-grid,
+  .achievements-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  /* More page - Standards & MVV */
+  .standards-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  .standard-card {
+    padding: 24px 20px !important;
+  }
+
+  .mvv-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  .mvv-card {
+    padding: 30px 20px !important;
+  }
+
+  /* Contact form */
+  .contact-form {
+    padding: 24px 20px !important;
+  }
+}
+
+/* ============================================
    Reduced Motion Support
    ============================================ */
 @media (prefers-reduced-motion: reduce) {
