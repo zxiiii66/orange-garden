@@ -50,7 +50,7 @@ body {
   color: var(--text-dark);
   background-color: var(--bg-cream);
   line-height: 1.8;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 a {
@@ -1230,32 +1230,132 @@ img {
   }
 
   /* Hero */
-  .page-hero {
-    min-height: 50vh;
-    padding: 120px 20px 60px;
+  .hero,
+  .page-hero,
+  .story-hero,
+  .company-hero,
+  .tech-hero,
+  .products-hero,
+  .honors-hero,
+  .team-hero,
+  .timeline-hero,
+  .more-hero {
+    min-height: 40vh !important;
+    padding: 80px 20px 40px !important;
   }
 
-  .page-hero h1 {
-    font-size: 32px;
-    letter-spacing: 2px;
+  .hero h1,
+  .page-hero h1,
+  .story-hero h1,
+  .company-hero h1,
+  .tech-hero h1,
+  .products-hero h1,
+  .honors-hero h1,
+  .team-hero h1,
+  .timeline-hero h1,
+  .more-hero h1 {
+    font-size: 26px !important;
+    letter-spacing: 2px !important;
   }
 
-  .page-hero .subtitle {
-    font-size: 15px;
+  .hero .hero-slogan,
+  .hero .hero-en,
+  .hero .hero-brand,
+  .page-hero .subtitle,
+  .page-hero p,
+  .story-hero p,
+  .company-hero p,
+  .tech-hero p,
+  .products-hero p,
+  .honors-hero p,
+  .team-hero .tagline,
+  .team-hero .university,
+  .timeline-hero p,
+  .more-hero p {
+    font-size: 13px !important;
+  }
+
+  .hero-title {
+    font-size: 36px !important;
+    letter-spacing: 4px !important;
+  }
+
+  .hero-slogan {
+    font-size: 16px !important;
+  }
+
+  .hero-brand {
+    font-size: 11px !important;
+    letter-spacing: 4px !important;
+  }
+
+  .hero-en {
+    font-size: 11px !important;
+    letter-spacing: 3px !important;
+  }
+
+  /* Hero content areas */
+  .hero-content,
+  .team-hero-content,
+  .story-hero-content,
+  .tech-hero-content,
+  .company-hero-content,
+  .products-hero-content {
+    padding: 0 16px !important;
+  }
+
+  .hero-content h1,
+  .team-hero-content h1,
+  .story-hero-content h1,
+  .tech-hero-content h1,
+  .company-hero-content h1,
+  .products-hero-content h1 {
+    font-size: 26px !important;
   }
 
   /* Section headers */
   .section-header {
-    margin-bottom: 40px;
+    margin-bottom: 30px;
   }
 
   .section-header h2 {
-    font-size: 26px;
+    font-size: 22px;
   }
 
   .section-header .en-title {
-    font-size: 12px;
+    font-size: 11px;
     letter-spacing: 2px;
+  }
+
+  /* All sections padding */
+  .story-section,
+  .company-intro,
+  .core-tech,
+  .star-product,
+  .honors-section,
+  .team-overview,
+  .research-methods,
+  .team-members,
+  .official-account,
+  .team-achievements,
+  .project-info,
+  .team-cta,
+  .timeline-section,
+  .timeline-summary,
+  .timeline-cta,
+  .section-nav,
+  .farm-history,
+  .selection-standards,
+  .brand-visual,
+  .media-section,
+  .mvv-section,
+  .contact-section,
+  .photo-gallery,
+  .certificate-section,
+  .ecological-system,
+  .advantages,
+  .tech-steps {
+    padding: 50px 0 !important;
   }
 
   /* Grids */
@@ -1336,6 +1436,73 @@ img {
 
   .cut-signature h3 {
     font-size: 18px;
+  }
+
+  /* Prevent decorative elements from causing overflow */
+  .ink-circle {
+    transform: scale(0.5);
+    opacity: 0.1;
+  }
+
+  .juice-splash {
+    width: 140px;
+    height: 140px;
+  }
+
+  .story-quote blockquote {
+    font-size: 18px;
+    padding: 0 10px;
+  }
+
+  .story-quote blockquote::before {
+    font-size: 60px;
+    top: -20px;
+    left: -10px;
+  }
+
+  /* Fix all pages overflow on mobile */
+  .nav {
+    overflow: visible;
+  }
+
+  .nav-inner {
+    overflow: visible;
+  }
+
+  .hero, .page-hero, .story-hero, .company-hero, .tech-hero,
+  .products-hero, .honors-hero, .team-hero, .timeline-hero, .more-hero {
+    overflow: hidden;
+  }
+
+  /* Ensure stats display all items on mobile */
+  .stats-section,
+  .stats-grid,
+  .stat-item {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  .stats-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 16px !important;
+  }
+
+  .stat-item {
+    padding: 20px 10px !important;
+  }
+
+  .stat-number {
+    font-size: 32px !important;
+  }
+
+  .stat-unit {
+    font-size: 14px !important;
+  }
+
+  .stat-label {
+    font-size: 12px !important;
   }
 }
 
