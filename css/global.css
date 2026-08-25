@@ -2084,6 +2084,44 @@ img {
   .cert-item h3 {
     font-size: 15px !important;
   }
+
+  /* Homepage - Ecological cycle circles */
+  .cycle-flow {
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    padding: 20px 0 !important;
+  }
+
+  .cycle-flow::before {
+    display: none !important;
+  }
+
+  .cycle-step {
+    flex: 0 0 auto !important;
+    width: calc(33% - 8px) !important;
+  }
+
+  .cycle-icon {
+    width: 52px !important;
+    height: 52px !important;
+    font-size: 24px !important;
+    margin-bottom: 8px !important;
+    border-width: 2px !important;
+  }
+
+  .cycle-step h4 {
+    font-size: 12px !important;
+    margin-bottom: 2px !important;
+  }
+
+  .cycle-step p {
+    font-size: 10px !important;
+  }
+
+  .cycle-arrow {
+    display: none !important;
+  }
 }
 
 /* ============================================
