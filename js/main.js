@@ -418,6 +418,32 @@ document.querySelectorAll('.nav-links a').forEach(link => {
   }
 });
 
+// Mobile menu toggle
+const menuBtn = document.querySelector('.nav-menu-btn');
+const navLinks = document.querySelector('.nav-links');
+if (menuBtn && navLinks) {
+  menuBtn.addEventListener('click', () => {
+    menuBtn.classList.toggle('active');
+    navLinks.classList.toggle('open');
+  });
+
+  // Close menu when clicking a link
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      menuBtn.classList.remove('active');
+      navLinks.classList.remove('open');
+    });
+  });
+
+  // Close menu when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!menuBtn.contains(e.target) && !navLinks.contains(e.target)) {
+      menuBtn.classList.remove('active');
+      navLinks.classList.remove('open');
+    }
+  });
+}
+
 // ============================================
 // Image lazy loading
 // ============================================
@@ -446,4 +472,22 @@ document.addEventListener('DOMContentLoaded', () => {
   initTimelineAnimations();
   initCounterAnimations();
   initOrangeCutAnimation();
+  initImageRevealAnimations();
 });
+
+// Image reveal on scroll
+function initImageRevealAnimations() {
+  const imageObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+        imageObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+
+  document.querySelectorAll('.eco-image, .tech-image-full').forEach(el => {
+    el.classList.add('reveal-on-scroll');
+    imageObserver.observe(el);
+  });
+}
